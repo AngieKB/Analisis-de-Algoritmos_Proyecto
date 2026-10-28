@@ -1,0 +1,51 @@
+REVIEW ARTICLE Open Access
+Systematic review of research on artificial
+intelligence applications in higher
+education – where are the educators?
+Olaf Zawacki-Richter* , Victoria I. Marín , Melissa Bond and Franziska Gouverneur
+* Correspondence: olaf.zawacki.
+richter@uni-oldenburg.de
+Faculty of Education and Social
+Sciences, University of Oldenburg,
+Ammerländer Heerstr. 138, 26129
+Oldenburg, Germany
+Abstract
+According to various international reports, Artificial Intelligence in Education (AIEd) is
+one of the currently emerging fields in educational technology. Whilst it has been
+around for about 30 years, it is still unclear for educators how to make pedagogical
+advantage of it on a broader scale, and how it can actually impact meaningfully on
+teaching and learning in higher education. This paper seeks to provide an overview
+of research on AI applications in higher education through a systematic review. Out
+of 2656 initially identified publications for the period between 2007 and 2018, 146
+articles were included for final synthesis, according to explicit inclusion and exclusion
+criteria. The descriptive results show that most of the disciplines involved in AIEd
+papers come from Computer Science and STEM, and that quantitative methods were
+the most frequently used in empirical studies. The synthesis of results presents four
+areas of AIEd applications in academic support services, and institutional and
+administrative services: 1. profiling and prediction, 2. assessment and evaluation, 3.
+adaptive systems and personalisation, and 4. intelligent tutoring systems. The
+conclusions reflect on the almost lack of critical reflection of challenges and risks of
+AIEd, the weak connection to theoretical pedagogical perspectives, and the need for
+further exploration of ethical and educational approaches in the application of AIEd
+in higher education.
+Keywords: Artificial intelligence, Higher education, Machine learning, Intelligent
+tutoring systems, Systematic review
+Introduction
+Artificial intelligence (AI) applications in education are on the rise and have received a
+lot of attention in the last couple of years. AI and adaptive learning technologies are
+prominently featured as important developments in educational technology in the
+2018 Horizon report (Educause, 2018), with a time to adoption of 2 or 3 years. Accord-
+ing to the report, experts anticipate AI in education to grow by 43% in the period
+2018–2022, although the Horizon Report 2019 Higher Education Edition (Educause,
+2019) predicts that AI applications related to teaching and learning are projected to
+grow even more significantly than this. Contact North, a major Canadian non-profit
+online learning society, concludes that “there is little doubt that the [AI] technology is
+inexorably linked to the future of higher education” (Contact North, 2018, p. 5). With
+heavy investments by private companies such as Google, which acquired European AI
+© The Author(s). 2019 Open Access This article is distributed under the terms of the Creative Commons Attribution 4.0 International
+License (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use, distribution, and reproduction in any medium,
+provided you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and
+indicate if changes were made.
+Zawacki-Richter et al. International Journal of Educational Technology in Higher
+Education           (2019) 16:39 
+https://doi.org/10.1186/s41239-019-0171-0

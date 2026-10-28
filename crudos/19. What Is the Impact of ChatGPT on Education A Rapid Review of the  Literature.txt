@@ -1,0 +1,66 @@
+Citation: Lo, C.K. What Is the Impact
+of ChatGPT on Education? A Rapid
+Review of the Literature. Educ. Sci.
+2023, 13, 410. https://doi.org/
+10.3390/educsci13040410
+Academic Editor: Maiga Chang
+Received: 13 March 2023
+Revised: 6 April 2023
+Accepted: 13 April 2023
+Published: 18 April 2023
+Copyright: © 2023 by the author.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+education 
+sciences
+Review
+What Is the Impact of ChatGPT on Education? A Rapid Review
+of the Literature
+Chung Kwan Lo
+Department of Mathematics and Information Technology, The Education University of Hong Kong,
+Hong Kong SAR 999077, China; chungkwanlo@eduhk.hk
+Abstract: An artificial intelligence-based chatbot, ChatGPT, was launched in November 2022 and
+is capable of generating cohesive and informative human-like responses to user input. This rapid
+review of the literature aims to enrich our understanding of ChatGPT’s capabilities across subject
+domains, how it can be used in education, and potential issues raised by researchers during the
+first three months of its release (i.e., December 2022 to February 2023). A search of the relevant
+databases and Google Scholar yielded 50 articles for content analysis (i.e., open coding, axial coding,
+and selective coding). The findings of this review suggest that ChatGPT’s performance varied across
+subject domains, ranging from outstanding (e.g., economics) and satisfactory (e.g., programming)
+to unsatisfactory (e.g., mathematics). Although ChatGPT has the potential to serve as an assistant
+for instructors (e.g., to generate course materials and provide suggestions) and a virtual tutor for
+students (e.g., to answer questions and facilitate collaboration), there were challenges associated with
+its use (e.g., generating incorrect or fake information and bypassing plagiarism detectors). Immediate
+action should be taken to update the assessment methods and institutional policies in schools and
+universities. Instructor training and student education are also essential to respond to the impact of
+ChatGPT on the educational environment.
+Keywords: ChatGPT; OpenAI; artificial intelligence; natural language processing; chatbot
+1. Introduction
+Artificial intelligence (AI) has developed rapidly in recent years, leading to various
+applications in different disciplines, such as healthcare [1] and education [2]. AI systems can
+be trained to simulate the human brain and carry out routine work using large amounts of
+data [3]. In healthcare, for example, AI can aid professionals in their work by synthesising
+patient records, interpreting diagnostic images, and highlighting health concerns [4]. AI
+applications have also been utilised in education to enhance administrative services and
+academic support [2]. One representative example is intelligent tutoring systems (ITS),
+which can be used to simulate one-to-one personal tutoring. The results of a meta-analysis
+indicated that ITS generally had a moderately positive effect on the academic achievement
+of college students [5]. However, the development of ITS can be challenging, as it involves
+not only content creation and design but also the refinement of feedback phrasing and
+dialogue strategies [6].
+ChatGPT, a recently developed conversational chatbot created by OpenAI [7], may
+make it easier for instructors to apply AI in teaching and learning. ChatGPT uses natural
+language processing to generate human-like responses to user input. It has gained atten-
+tion worldwide for its impressive performance in generating coherent, systematic, and
+informative responses [8]. In a surprising achievement, ChatGPT passed four separate
+examinations at the University of Minnesota Law School [9]. Although its scores were
+not (yet) very good, the results demonstrate that this AI application is capable of earning
+a university degree [10]. Since its release on 30 November 2022, ChatGPT has become
+the fastest-growing user application in history, reaching 100 million active users as of
+January 2023, just two months after its launch [11].
+Educ. Sci. 2023, 13, 410. https://doi.org/10.3390/educsci13040410 https://www.mdpi.com/journal/education

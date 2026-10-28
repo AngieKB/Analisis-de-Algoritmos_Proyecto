@@ -1,0 +1,71 @@
+Open Access
+© The Author(s) 2024. Open Access  This article is licensed under a Creative Commons Attribution 4.0 International License, which permits 
+use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original 
+author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third 
+party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the mate-
+rial. If material is not included in the article’s Creative Commons licence and your intended use is not permitted by statutory regulation or 
+exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http:// 
+creat iveco mmons. org/ licen ses/ by/4. 0/.
+REVIEW ARTICLE
+Xia et al. Int J Educ Technol High Educ           (2024) 21:40  
+https://doi.org/10.1186/s41239-024-00468-z
+International Journal of Educational
+Technology in Higher Education
+A scoping review on how generative artificial 
+intelligence transforms assessment in higher 
+education
+Qi Xia3  , Xiaojing Weng2  , Fan Ouyang3  , Tzung Jin Lin4 and Thomas K.F. Chiu1,5,6*  
+Abstract 
+Generative artificial intelligence provides both opportunities and challenges for higher 
+education. Existing literature has not properly investigated how this technology would 
+impact assessment in higher education. This scoping review took a forward-thinking 
+approach to investigate how generative artificial intelligence transforms assessment 
+in higher education. We used the PRISMA extension for scoping reviews to select articles 
+for review and report the results. In the screening, we retrieved 969 articles and selected 
+32 empirical studies for analysis. Most of the articles were published in 2023. We used 
+three levels—students, teachers, and institutions—to analyses the articles. Our results 
+suggested that assessment should be transformed to cultivate students’ self-regulated 
+learning skills, responsible learning, and integrity. To successfully transform assessment 
+in higher education, the review suggested that (i) teacher professional development 
+activities for assessment, AI, and digital literacy should be provided, (ii) teachers’ beliefs 
+about human and AI assessment should be strengthened, and (iii) teachers should be 
+innovative and holistic in their teaching to reflect the assessment transformation. Edu-
+cational institutions are recommended to review and rethink their assessment policies, 
+as well as provide more inter-disciplinary programs and teaching.
+Keywords: Generative artificial intelligence, Scoping review, Higher education, 
+Assessment, Educational policy, Professional development, Assessment literacy, AI 
+literacy
+Introduction
+Artificial intelligence (AI) technologies have played an important role in improving learn-
+ing, teaching, assessment, and educational administration (Chen et  al., 2020; Zhang & 
+Aslan, 2021; Chiu et al., 2023). With the release of ChatGPT, generative artificial intelligence 
+(GenAI) is seen as having an unprecedented major impact on higher education. How GenAI 
+transforms and influences higher education is still unclear (Al-Zahrani, 2023). GenAI refers 
+to a subset of AI technologies capable of generating new content, ranging from text, images, 
+and music to code and synthetic data (Chiu, 2023, 2024). Unlike typical AI technologies pri-
+marily designed for analysis and pattern recognition, GenAI can create novel outputs based 
+on the data they have been trained on (Barrett & Pack, 2023). The advent of GenAI not only 
+*Correspondence:   
+Thomas.kf.chiu@gmail.com; 
+tchiu@cuhk.edu.hk
+1 Department of Curriculum 
+and Instruction, The Chinese 
+University of Hong Kong, Hong 
+Kong, China
+2 Department of Curriculum 
+and Instruction, The Education 
+University of Hong Kong, Hong 
+Kong, China
+3 College of Education, Zhejiang 
+University, Hangzhou, China
+4 Program of Learning Sciences, 
+National Taiwan Normal 
+University, Taipei, Taiwan
+5 Centre for Learning Sciences 
+and Technologies, The Chinese 
+University of Hong Kong, Hong 
+Kong, China
+6 Centre for University 
+and School Partnership, The 
+Chinese University of Hong 
+Kong, Hong Kong SAR, China

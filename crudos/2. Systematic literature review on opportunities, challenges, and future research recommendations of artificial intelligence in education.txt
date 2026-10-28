@@ -1,0 +1,77 @@
+Computers and Education: Artificial Intelligence 4 (2023) 100118
+Available online 20 December 2022
+2666-920X/© 2022 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+Systematic literature review on opportunities, challenges, and future 
+research recommendations of artificial intelligence in education 
+Thomas K.F. Chiu a,*, Qi Xia b, Xinyan Zhou b, Ching Sing Chai b, Miaoting Cheng c 
+a Department of Curriculum and Instruction, Centre for Learning Sciences and Technologies, Hong Kong Institute of Asia-Pacific Studies at The Chinese University of Hong 
+Kong, Hong Kong Special Administrative Region 
+b The Department of Curriculum and Instruction Faculty of Education, The Chinese University of Hong Kong, Hong Kong Special Administrative Region 
+c Faculty of Education & Institute of KEEP Collaborative Innovation, Shenzhen University, China   
+A R T I C L E  I N F O   
+Keywords: 
+Artificial intelligence 
+Artificial intelligence in education 
+Systematic review 
+Learning 
+Teaching 
+Assessment 
+A B S T R A C T   
+Applications of artificial intelligence in education (AIEd) are emerging and are new to researchers and practi-
+tioners alike. Reviews of the relevant literature have not examined how AI technologies have been integrated 
+into each of the four key educational domains of learning, teaching, assessment, and administration. The re-
+lationships between the technologies and learning outcomes for students and teachers have also been neglected. 
+This systematic review study aims to understand the opportunities and challenges of AIEd by examining the 
+literature from the last 10 years (2012–2021) using matrix coding and content analysis approaches. The results 
+present the current focus of AIEd research by identifying 13 roles of AI technologies in the key educational 
+domains, 7 learning outcomes of AIEd, and 10 major challenges. The review also provides suggestions for future 
+directions of AIEd research.   
+1. Introduction 
+Artificial intelligence (AI) refers to the ability of a digital machine to 
+perform tasks commonly associated with intelligent beings, and its 
+associated technologies are divided into various branches, such as 
+computer vision, speech, machine learning, big data, and natural lan-
+guage processing (Chiu, 2021; Chiu et al., 2022; Xia et al., 2022). Its 
+explosive growth is increasingly transforming the ways people interact, 
+communicate, live, learn, and work (Chiu, 2021; Chiu et al., 2022; Xia 
+et al., 2022; Pedró et al., 2019; ). In this study, AI in education (AIEd) 
+refers to the application of AI technologies, such as intelligent tutoring 
+systems, chatbots, robots, and the automated assessment of all modes of 
+digitized artifacts that support and enhance education. AIEd has enor-
+mous potential to improve learning, teaching, assessment, and educa-
+tional administration by offering students more personalized and 
+adaptive learning, fostering teachers’ understanding of students’ 
+learning process, and providing anywhere anytime machine supported 
+queries and immediate feedback. . AIEd is stimulating an evolution of 
+teaching and learning practices and program development, and it is one 
+of the most important areas for educational research. 
+The importance of AIEd research and practice is reflected in various 
+national and international initiatives and reports. For example, in 2019, 
+the government of China launched a strategic policy of education 
+modernization to encourage greater integration of intelligent technol-
+ogy into education and more teacher professional development activ-
+ities related to AI and AIEd (Chiu, 2021; Chiu et al., 2022; Xia et al., 
+2022). In the United States, resources and grants are being provided to 
+designated institutions and organizations for researching and devel-
+oping AI-driven personalized learning platforms that have great poten-
+tial to boost academic performance by deepening students’ cognitive 
+engagement and to reduce educational inequalities by assisting under-
+privileged students (Boninger et al., 2020; Williamson & Eynon, 2020). 
+Jacobs Foundation has awarded CHF 2 million to University of Oulu, 
+Finland, and Radboud University, the Netherlands, to establish a global 
+research center that will prepare young learners for the age of artificial 
+intelligence (AI) - Center for Learning and Living with AI (CELLA). A 
+report from the Organization for Economic Co-operation and Develop-
+ment recommended additional research aimed at translating research 
+findings into educational practice, and for educators to make use of big 
+data and learning analytics to improve teaching and learning (Kuhl 
+et al., 2019). With the continuous advancement of AI technologies and 
+implementation of relevant policies, AIEd has become an important 
+* Corresponding author. 
+E-mail addresses: thomas.kf.chiu@gmail.com (T.K.F. Chiu), qxiabo@link.cuhk.edu.hk, Thomas.kf.chiu@gmail.com (Q. Xia), XinyanZ@link.cuhk.edu.hk 
+(X. Zhou), CSChai@cuhk.edu.hk (C.S. Chai), Chengmt1@szu.edu.cn (M. Cheng).  
+Contents lists available at ScienceDirect 
+Computers and Education: Artificial Intelligence 
+journal homepage: www.sciencedirect.com/journal/computers-and-education-artificial-intelligence 
+https://doi.org/10.1016/j.caeai.2022.100118 
+Received 5 September 2022; Received in revised form 10 November 2022; Accepted 17 December 2022   

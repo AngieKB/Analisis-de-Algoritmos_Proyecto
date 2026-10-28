@@ -1,0 +1,73 @@
+Open Access
+© The Author(s) 2024. Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits 
+use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original 
+author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third 
+party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the mate-
+rial. If material is not included in the article’s Creative Commons licence and your intended use is not permitted by statutory regulation or 
+exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http://
+creativecommons.org/licenses/by/4.0/.
+REVIEW ARTICLE
+Bond et al. Int J Educ Technol High Educ            (2024) 21:4  
+https://doi.org/10.1186/s41239-023-00436-z
+International Journal of Educational
+Technology in Higher Education
+A meta systematic review of artificial 
+intelligence in higher education: a call 
+for increased ethics, collaboration, and rigour
+Melissa Bond1,2,3*  , Hassan Khosravi4, Maarten De Laat5, Nina Bergdahl6,7, Violeta Negrea3, Emily Oxley3, 
+Phuong Pham5, Sin Wang Chong3,8 and George Siemens5 
+Abstract 
+Although the field of Artificial Intelligence in Education (AIEd) has a substantial history 
+as a research domain, never before has the rapid evolution of AI applications in edu-
+cation sparked such prominent public discourse. Given the already rapidly grow-
+ing AIEd literature base in higher education, now is the time to ensure that the field 
+has a solid research and conceptual grounding. This review of reviews is the first 
+comprehensive meta review to explore the scope and nature of AIEd in higher educa-
+tion (AIHEd) research, by synthesising secondary research (e.g., systematic reviews), 
+indexed in the Web of Science, Scopus, ERIC, EBSCOHost, IEEE Xplore, ScienceDirect 
+and ACM Digital Library, or captured through snowballing in OpenAlex, ResearchGate 
+and Google Scholar. Reviews were included if they synthesised applications of AI solely 
+in formal higher or continuing education, were published in English between 2018 
+and July 2023, were journal articles or full conference papers, and if they had a method 
+section 66 publications were included for data extraction and synthesis in EPPI 
+Reviewer, which were predominantly systematic reviews (66.7%), published by authors 
+from North America (27.3%), conducted in teams (89.4%) in mostly domestic-only col-
+laborations (71.2%). Findings show that these reviews mostly focused on AIHEd gener-
+ally (47.0%) or Profiling and Prediction (28.8%) as thematic foci, however key findings 
+indicated a predominance of the use of Adaptive Systems and Personalisation in higher 
+education. Research gaps identified suggest a need for greater ethical, methodologi-
+cal, and contextual considerations within future research, alongside interdisciplinary 
+approaches to AIHEd application. Suggestions are provided to guide future primary 
+and secondary research.
+Keywords: Artificial Intelligence, AIEd, AI, Evidence synthesis, Tertiary review, 
+Research methods, Quality assessment, Intelligent tutoring systems, Adaptive systems, 
+Prediction, Personalisation, Automatic assessment
+Introduction
+Artificial Intelligence (AI) has existed since the 1960s and its adoption in education, par-
+ticularly with the early introduction of intelligent tutoring systems, has become a sub-
+stantive research domain (AIEd). Despite the growing realisation of the potential for AI 
+*Correspondence:   
+melissa.bond@ucl.ac.uk
+1 EPPI Centre, University College 
+London, London, UK
+2 Knowledge Center 
+for Education, University 
+of Stavanager, Stavanger, Norway
+3 National Institute of Teaching, 
+London, UK
+4 Institute for Teaching 
+and Learning Innovation, The 
+University of Queensland, St 
+Lucia, Australia
+5 Centre for Change 
+and Complexity in Learning, 
+Education Futures, University 
+of South Australia, Adelaide, 
+Australia
+6 Halmstad University, Halmstad, 
+Sweden
+7 Stockholm University, 
+Stockholm, Sweden
+8 International Education 
+Institute, University of St 
+Andrew’s, St Andrews, UK

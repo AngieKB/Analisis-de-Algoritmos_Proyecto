@@ -1,0 +1,74 @@
+Computers and Education: Artificial Intelligence 3 (2022) 100087
+Available online 19 July 2022
+2666-920X/© 2022 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-
+nc-nd/4.0/).
+Educational applications of artificial intelligence in simulation-based 
+learning: A systematic mapping review 
+Chih-Pu Dai *, Fengfeng Ke 
+Department of Educational Psychology and Learning Systems, Florida State University, Tallahassee, USA   
+A R T I C L E  I N F O   
+Keywords: 
+Artificial intelligence 
+Simulations 
+Virtual agents 
+Affective computing 
+Assessments 
+A B S T R A C T   
+The field of education has experienced a transformation as artificial intelligence (AI) becomes increasingly 
+applicable for learning purposes. AI has the potential to transform the social interactions in educational contexts 
+among learners, teachers, and technologies. In this systematic mapping review, we focus on mapping and 
+framing trends for educational applications of AI in simulation-based learning. Fifty-nine studies met the in-
+clusion and exclusion criteria. We coded and analyzed six mapped categories in this literature review: (1) the 
+year-of-study trend, (2) methods, (3) AI technologies, (4) simulation, (5) study trends, and (6) learning principles 
+and theories. To provide nuanced details from the included literature, we also synthesized three thematic trends: 
+(1) AI built in virtual agents for simulation-based learning, (2) AI infused in simulation-based learning with 
+affective computing, and (3) AI leveraged in simulation-based learning for assessments. Trend One builds on a 
+general acknowledgement of virtual agents as a guide for situated learning. Trend Two posits the role of affective 
+states in learning trajectories and suggests the related machine learning approaches. Trend Three discusses 
+machine learning techniques and multimodal computing used for assessment and feedback. The paper concludes 
+with implications and suggestions for research and practice in AI in education using simulation-based learning.   
+1. Introduction 
+The field of education has experienced a transformation as artificial 
+intelligence (AI) becomes increasingly applicable for learning purposes. 
+AI can be generally defined as “machine intelligence which is demon-
+strated by a non-living entity compared to natural intelligence as dis-
+played by humans and other living species” (Leahy et al., 2019, p. 6). 
+Artificial intelligence in education (AIEd) is a relatively young field 
+(Chen et al., 2020a) and the applications of AIEd have fallen behind 
+other fields such as applied science and finance (Luckin & Cukurova, 
+2019). Despite falling behind, Chen et al. (2020a) suggested that there 
+are continued interests and potential positive impacts of AIEd research. 
+Emerging applications of AIEd have been implemented in different 
+educational settings, such as teachers’ orchestration supports in class-
+rooms (Holstein et al., 2019), learning analytics (Shum & Luckin, 2019), 
+and simulation-based learning (Dai et al., 2021; Winkler-Schwartz et al., 
+2019). Among these educational applications using AI, simulations have 
+been widely recommended and used to provide active and adaptive 
+learning experience (Chen et al., 2020b; Johnson & Lester, 2016). As 
+such, in this review, we focus on exploring and synthesizing the affor-
+dances of AI in addressing individual needs (Chen et al., 2020a; Woolf 
+et al., 2013) and providing active learning experiences in 
+simulation-based learning. 
+Simulation-based learning environments, such as intelligent systems, 
+virtual reality, or medical simulations, refer to “interactive digital 
+learning environments that imitate a real-life process or situation … 
+allow learners to test their hypotheses of the effects of input variables on 
+the intended outcomes” (Merchant et al., 2014, p. 30). By using AI 
+techniques (such as artificial neural networks (ANNs), natural language 
+processing (NLP), machine learning, and deep learning), 
+simulation-based learning can facilitate active learning and decision 
+making with human-like interactions. However, the literature remains 
+scarce concerning the trends in the applications of AI (Chen et al., 
+2020a) in simulation-based learning–––specifically, the associated as-
+pects of active learning experiences and strategies (Hwang et al., 2020; 
+Zhang & Aslan, 2021). As a result, the purpose of this systematic review 
+is to conduct literature mapping and analyze thematic trends of educa-
+tional applications of AI in simulation-based learning (or “AI in 
+* Corresponding author. Department of Educational Psychology and Learning Systems, College of Education, Florida State University., 1114 W. Call Street, Tal-
+lahassee, FL, 32306, USA. 
+E-mail address: cdai@fsu.edu (C.-P. Dai).  
+Contents lists available at ScienceDirect 
+Computers and Education: Artificial Intelligence 
+journal homepage: www.sciencedirect.com/journal/computers-and-education-artificial-intelligence 
+https://doi.org/10.1016/j.caeai.2022.100087 
+Received 30 January 2022; Received in revised form 23 June 2022; Accepted 26 June 2022   

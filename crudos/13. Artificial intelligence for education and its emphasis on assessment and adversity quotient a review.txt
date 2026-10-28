@@ -1,0 +1,61 @@
+Artificial intelligence for education
+and its emphasis on assessment
+and adversity quotient: a review
+Jyoti Mudkanna Gavhane and Reena Pagare
+MIT Art Design and Technology University, Pune, India
+Abstract
+Purpose – The purpose of this study was to analyze importance of artificial intelligence (AI) in education and
+its emphasis on assessment and adversity quotient (AQ).
+Design/methodology/approach – The study utilizes a systematic literature review of over 141 journal
+papers and psychometric tests to evaluate AQ. Thematic analysis of quantitative and qualitative studies
+explores domains of AI in education.
+Findings – Results suggest that assessing the AQ of students with the help of AI techniques is necessary.
+Education is a vital tool to develop and improve natural intelligence, and this survey presents the discourse use
+of AI techniques and behavioral strategies in the education sector of the recent era. The study proposes a
+conceptual framework of AQ with the help of assessment style for higher education undergraduates.
+Originality/value – Research on AQ evaluation in the Indian context is still emerging, presenting a potential
+avenue for future research. Investigating the relationship between AQ and academic performance among
+Indian students is a crucial area of research. This can provide insights into the role of AQ in academic
+motivation, persistence and success in different academic disciplines and levels of education. AQ evaluation
+offers valuable insights into how individuals deal with and overcome challenges. The findings of this study
+have implications for higher education institutions to prepare for future challenges and better equip students
+with necessary skills for success. The papers reviewed related to AI for education opens research opportunities
+in the field of psychometrics, educational assessment and the evaluation of AQ.
+Keywords Education, Artificial intelligence, Teaching-learning analytics, Assessment, Adversity Quotient
+Paper type Literature review
+1. Introduction
+Modern technology is conquering “artificial intelligence” (AI) (Chen et al., 2020a), which is the
+center of significant computer research, design and application. Humans are trying hard to
+embed AI in a machine by making use of natural intelligence. Why? Because it has been
+proved by earlier researchers, the need for time competes with smart systems (Carbonell,
+1970; Sarker, 2022; Spector and Ma, 2019), which take less effort to operate, work
+automatically, efficiently, etc. The field is in demand in the 21st century characterized by
+many varied and independent efforts. Intelligence (Atrizka and Pratama, 2022) means the
+capability to attain and apply information, knowledge and skills. AI does not exactly work
+like human cognitive intelligence, and it is closer to the realm on which this research review
+focuses. AI is spanning the education sector speedily. Education is multidimensional
+(Ouyang and Jiao, 2021). Education accommodates administration, academic monitoring,
+counseling, teaching-learning, assessments, exams and feedback. Some policies help to
+improve quality of education. Recently Indian education System devised New Education
+Policy in 2020 (NEP) (Aktar, 2021). It is introduced as NEP 2020. It signifies skill-based
+assessment. NEP 2020 talks about the 360-degree development of a student which is
+incorporated in the following section. NEP focuses on talent, capabilities and life skills. This
+literature discusses about AI-based assessment framework to evaluate the adversity quotient
+AI for
+education
+609
+Funding: This research received no external funding.
+Conflicts of interest: The authors declare no conflict of interest.
+The current issue and full text archive of this journal is available on Emerald Insight at:
+https://www.emerald.com/insight/0040-0912.htm
+Received 5 April 2023
+Revised 31 August 2023
+26 November 2023
+30 January 2024
+Accepted 3 March 2024
+Education þ Training
+Vol. 66 No. 6, 2024
+pp. 609-645
+© Emerald Publishing Limited
+0040-0912
+DOI 10.1108/ET-04-2023-0117

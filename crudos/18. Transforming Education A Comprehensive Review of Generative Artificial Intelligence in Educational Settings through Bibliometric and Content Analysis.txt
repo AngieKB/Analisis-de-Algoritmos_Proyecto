@@ -1,0 +1,71 @@
+Citation: Bahroun, Z.; Anane, C.;
+Ahmed, V.; Zacca, A. Transforming
+Education: A Comprehensive Review
+of Generative Artificial Intelligence in
+Educational Settings through
+Bibliometric and Content Analysis.
+Sustainability 2023, 15, 12983.
+https://doi.org/10.3390/
+su151712983
+Academic Editors: Savvas A.
+Chatzichristofis, Hao-Chiang
+Koong Lin, Jian-Hong Ye,
+Yung-Wei Hao and Yu-Feng Wu
+Received: 1 August 2023
+Revised: 17 August 2023
+Accepted: 17 August 2023
+Published: 29 August 2023
+Copyright: © 2023 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+sustainability
+Review
+Transforming Education: A Comprehensive Review of
+Generative Artificial Intelligence in Educational Settings
+through Bibliometric and Content Analysis
+Zied Bahroun 1,* , Chiraz Anane 2, Vian Ahmed 1 and Andrew Zacca 1
+1 Department of Industrial Engineering, College of Engineering, American University of Sharjah,
+Sharjah P.O. Box 26666, United Arab Emirates; vahmed@aus.edu (V.A.); b00084411@aus.edu (A.Z.)
+2 Department of Foreign Languages, College of Arts, Humanities and Social Sciences, University of Sharjah,
+Sharjah P.O. Box 27272, United Arab Emirates; canane@sharjah.ac.ae
+* Correspondence: zbahroun@aus.edu
+Abstract: In the ever-evolving era of technological advancements, generative artificial intelligence
+(GAI) emerges as a transformative force, revolutionizing education. This review paper, guided by
+the PRISMA framework, presents a comprehensive analysis of GAI in education, synthesizing key
+insights from a selection of 207 research papers to identify research gaps and future directions in
+the field. This study begins with a content analysis that explores GAI’s transformative impact in
+specific educational domains, including medical education and engineering education. The versatile
+applications of GAI encompass assessment, personalized learning support, and intelligent tutoring
+systems. Ethical considerations, interdisciplinary collaboration, and responsible technology use are
+highlighted, emphasizing the need for transparent GAI models and addressing biases. Subsequently, a
+bibliometric analysis of GAI in education is conducted, examining prominent AI tools, research focus,
+geographic distribution, and interdisciplinary collaboration. ChatGPT emerges as a dominant GAI
+tool, and the analysis reveals significant and exponential growth in GAI research in 2023. Moreover,
+this paper identifies promising future research directions, such as GAI-enhanced curriculum design
+and longitudinal studies tracking its long-term impact on learning outcomes. These findings provide
+a comprehensive understanding of GAI’s potential in reshaping education and offer valuable insights
+to researchers, educators, and policymakers interested in the intersection of GAI and education.
+Keywords: education; generative artificial intelligence; educational technology; ChatGPT; ethics;
+review
+1. Introduction
+In an era where technological advancements are redefining human existence, there is
+one revolutionary force that stands out among the rest: artificial intelligence (AI). AI has
+permeated every corner of our lives, quietly and profoundly transforming the way we work,
+communicate, and navigate the world. The rise of AI was sparked in November 2022, when
+U.S. company OpenAI (San Francisco, CA, USA) released ChatGPT [1], an AI program
+that draws upon a large language database to generate responses from text-based inputs
+entered by humans [2]. Since its launch, it has skyrocketed in popularity, becoming one of
+the fastest-growing consumer applications ever with an estimated 100 million active users
+every month [3]. Following the successful release of ChatGPT, other tech companies have
+come out with their own AI-powered products, such as Google’s Bard [4] and GitHub’s
+Copilot [5].
+AI has infused various domains of our lives, revolutionizing industries such as finance,
+education, engineering, healthcare, and many more. According to Hadi et al. [6], AI has
+transformed practices in the financial sector, such as algorithmic trading, market prediction,
+and financial reporting. Hadi et al. [6] further argue that education has seen the integration
+Sustainability 2023, 15, 12983. https://doi.org/10.3390/su151712983 https://www.mdpi.com/journal/sustainability

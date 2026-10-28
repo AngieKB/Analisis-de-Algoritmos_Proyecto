@@ -1,0 +1,66 @@
+Citation: Ogunleye, B.; Zakariyyah,
+K.I.; Ajao, O.; Olayinka, O.; Sharma,
+H. A Systematic Review of Generative
+AI for Teaching and Learning Practice.
+Educ. Sci. 2024, 14, 636. https://
+doi.org/10.3390/educsci14060636
+Academic Editor: Bracha Kramarski
+Received: 28 March 2024
+Revised: 6 June 2024
+Accepted: 11 June 2024
+Published: 13 June 2024
+Copyright: © 2024 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+education 
+sciences
+Systematic Review
+A Systematic Review of Generative AI for Teaching and
+Learning Practice
+Bayode Ogunleye 1,* , Kudirat Ibilola Zakariyyah 1, Oluwaseun Ajao 2, Olakunle Olayinka 3
+and Hemlata Sharma 4
+1 School of Architecture, Technology & Engineering, University of Brighton, Brighton BN2 4GJ, UK
+2 Department of Computing & Mathematics, Manchester Metropolitan University, Manchester M1 5GD, UK
+3 School of Computer Science, The University of Sheffield, Sheffield S1 4DP, UK
+4 Department of Computing, Sheffield Hallam University, Sheffield S1 2NU, UK
+* Correspondence: b.ogunleye@brighton.ac.uk
+Abstract: The use of generative artificial intelligence (GenAI) in academia is a subjective and hotly
+debated topic. Currently, there are no agreed guidelines towards the usage of GenAI systems in
+higher education (HE) and, thus, it is still unclear how to make effective use of the technology for
+teaching and learning practice. This paper provides an overview of the current state of research on
+GenAI for teaching and learning in HE. To this end, this study conducted a systematic review of
+relevant studies indexed by Scopus, using the preferred reporting items for systematic reviews and
+meta-analyses (PRISMA) guidelines. The search criteria revealed a total of 625 research papers, of
+which 355 met the final inclusion criteria. The findings from the review showed the current state and
+the future trends in documents, citations, document sources/authors, keywords, and co-authorship.
+The research gaps identified suggest that while some authors have looked at understanding the
+detection of AI-generated text, it may be beneficial to understand how GenAI can be incorporated into
+supporting the educational curriculum for assessments, teaching, and learning delivery. Furthermore,
+there is a need for additional interdisciplinary, multidimensional studies in HE through collaboration.
+This will strengthen the awareness and understanding of students, tutors, and other stakeholders,
+which will be instrumental in formulating guidelines, frameworks, and policies for GenAI usage.
+Keywords: artificial intelligence; generative AI; higher education; PRISMA; systematic literature
+review; teaching and learning; topic modelling
+1. Introduction
+Generative artificial intelligence (GenAI) tools have taken the world by storm, most
+especially, ChatGPT and now, Gemini [1]. The advancement in technology has raised
+strands of concern in various sectors, specifically, on the assumption that technology will
+replace peoples’ jobs. A perceived predominant sector related to such effect is higher
+education [2]. The higher education (HE) sector contributes to every nation’s economy,
+offering a wealth of benefits to society. HE plays a key role in enhancing social mobility,
+bolstering social capital, fostering political stability, reducing crime rates, promoting social
+unity, spurring innovation, and cultivating trust and tolerance [3]. The development of such
+technology can be traced back to the advent of large language models (LLMs) in 2018, when
+BERT was released [4]. Since then, several LLMs have been released including GPT [5].
+GenAI tools rely on these LLMs to perform the task they are developed for. For example,
+ChatGPT relies on the GPT series to perform its task. LLMs are trained on a large number
+of parameters (data), including text and images [5–7]. By processing a huge amount of
+data, LLMs learn the statistical relationships, patterns, and structure within datasets, which
+enables them to predict or generate relevant and meaningful content in response to user
+requests. Thus, they are capable of performing various complex tasks [6–9].
+Educ. Sci. 2024, 14, 636. https://doi.org/10.3390/educsci14060636 https://www.mdpi.com/journal/education

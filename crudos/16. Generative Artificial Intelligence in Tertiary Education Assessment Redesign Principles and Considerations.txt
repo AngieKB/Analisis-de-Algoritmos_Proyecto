@@ -1,0 +1,67 @@
+Citation: Lye, C.Y.; Lim, L. Generative
+Artificial Intelligence in Tertiary
+Education: Assessment Redesign
+Principles and Considerations. Educ.
+Sci. 2024, 14, 569. https://doi.org/
+10.3390/educsci14060569
+Academic Editor: Randall S. Davies
+Received: 19 April 2024
+Revised: 8 May 2024
+Accepted: 24 May 2024
+Published: 26 May 2024
+Copyright: © 2024 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+education 
+sciences
+Review
+Generative Artificial Intelligence in Tertiary Education:
+Assessment Redesign Principles and Considerations
+Che Yee Lye 1 and Lyndon Lim 1,2,*
+1 Teaching & Learning Centre, Singapore University of Social Sciences, 463 Clementi Road,
+Singapore 599494, Singapore
+2 Graduate School of Education, The University of Western Australia, 35 Stirling Highway,
+Perth, WA 6009, Australia
+* Correspondence: lyndonlimjk@suss.edu.sg
+Abstract: The emergence of generative artificial intelligence (AI) such as ChatGPT has sparked
+significant assessment concerns within tertiary education. Assessment concerns have largely revolved
+around academic integrity issues among students, such as plagiarism and cheating. Nonetheless, it is
+also critical to consider that generative AI models trained on information retrieved from the Internet
+could produce biased and discriminatory outputs, and hallucination issues in large language models
+upon which generative AI acts provide made-up and untruthful outputs. This article considers the
+affordances and challenges of generative AI specific to assessments within tertiary education. It
+illustrates considerations for assessment redesign with the existence of generative AI and proposes
+the Against, Avoid and Adopt (AAA) principle to rethink and redesign assessments. It argues that
+more generative AI tools will emerge exponentially, and hence, engaging in an arms race against
+generative AI and policing the use of these technologies may not address the fundamental issues
+in assessments.
+Keywords: assessment; generative artificial intelligence; ChatGPT; AAA principle; tertiary education
+1. Introduction
+Generative artificial intelligence (AI) has gained enormous attention since the release
+of ChatGPT in late 2022, given its capability to understand human language and conduct
+conversations with users using natural language or human-like language. Generative AI
+has transformed many industries, such as business and healthcare, offering promising
+applications to enhance their functions and productivity. For example, in the business
+sector, routine work such as customer service or basic financial assessment can be taken
+over by generative AI; in healthcare, health advice, education and promotion can be carried
+out by generative AI [1]. Further, in the creative and design industries, generative AI can
+assist designers and creative professionals in generating content such as images, graphics
+and videos, as well as architecture and fashion designs [2].
+Within the education landscape and particularly in tertiary education institutions, gen-
+erative AI has impacted how students learn, how teachers teach [3–6] and how assessments
+are conducted [6]. For instance, given access, students can now use ChatGPT or something
+similar to generate essays, reports, academic and scientific research papers, programming
+codes and creative content. While generative AI demonstrates impressive capabilities in
+tertiary education for learning and teaching, a key concern in most tertiary educational
+institutions is the potential risk of students using these generative AI tools to cheat and
+plagiarise their assignments or assessments [7]. Notably, the world’s 50 top-ranking tertiary
+education institutions have developed and published policies and guidelines to guide both
+students and teachers on academic integrity issues such as plagiarism, acknowledgement
+of generative AI, detection of generative AI use and assessment design [7]. While it seems
+possible to use generative AI detection tools such as Turnitin AI, ZeroGPT and GPTZero
+Educ. Sci. 2024, 14, 569. https://doi.org/10.3390/educsci14060569 https://www.mdpi.com/journal/education

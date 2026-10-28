@@ -1,0 +1,71 @@
+Computers and Education: Artificial Intelligence 4 (2023) 100143
+Available online 26 May 2023
+2666-920X/© 2023 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+Myths, mis- and preconceptions of artificial intelligence: A review of 
+the literature 
+Arne Bewersdorff a,*, Xiaoming Zhai b, Jessica Roberts c, Claudia Nerdel a 
+a Technical University of Munich, Munich, Germany 
+b University of Georgia, Athens, USA 
+c Georgia Institute of Technology, Atlanta, USA   
+A R T I C L E  I N F O   
+Keywords: 
+Artificial intelligence 
+Misconceptions 
+Preconceptions 
+Review 
+A B S T R A C T   
+Artificial Intelligence (AI) is prevalent in nearly every aspect of our lives. However, recent studies have found a 
+significant amount of confusion and misunderstanding surrounding AI. To develop effective educational pro-
+grams in the field of AI, it is vital to examine and understand learners’ pre- and misconceptions as well as myths 
+about AI. This study examined a corpus of 591 studies. 25 relevant studies were identified by applying the 
+following eligibility criteria: English-written original empirical research on education and AI and reporting AI 
+conceptions in a formal learning context. The review found studies from six continents, with the majority 
+conducted in Europe and North America. The studies predominantly focus on the school and university levels. 
+Findings reveal a range of preconceptions, misconceptions, and myths about AI, such as: Learners often have 
+limited understanding of AI on a technical level. They tend to attribute human-like characteristics or attributes to 
+AI systems and may have narrow views of AI’s scope, capabilities, and limitations. The review also shows that 
+learners often have binary and unspecific views about the threats, dangers, and benefits of AI. Effective 
+educational programs are key to empower learners’ understanding of AI, thus helping them make informed 
+decisions about the integration of AI in our society, rather than being swayed by misinformation and unnecessary 
+fear. This review may help inform the development of more effective teaching and outreach strategies in AI 
+education.   
+1. Introduction 
+The field of artificial intelligence (AI) has seen significant progress in 
+recent years, with advancements in many fields like machine learning 
+and natural language processing leading to the development of 
+increasingly sophisticated AI systems (Jiang, Li, Luo, Yin, & Kaynak, 
+2022; Latif et al., 2023). While AI is rushing into our lives and work-
+places, there is still a significant amount of confusion, mis-
+understandings and uncertainty surrounding AI (Oh et al., 2017). There 
+is confusion about technical terms concerning AI (Lindner & Berges, 
+2020), the misunderstanding to conceptualize AI as embodied (Kreinsen 
+& Schulz, 2021) and uncertainty like unspecific fear as well as hope 
+towards AI (Antonenko & Abramowitz, 2022). 
+Given the increasing importance of AI in our society, it is crucial that 
+the general public has a basic understanding of the capabilities and 
+limitations of AI, as well as the ethical implications of its use. Exploring 
+these myths, mis- and preconceptions about AI among learners can 
+provide valuable insights into their prior understanding of the field and 
+help develop effective learning programmes. Although there is some 
+research on how learners conceptualize AI (e.g. Antonenko & Abramo-
+witz, 2022; Chounta, Bardone, Raudsep, & Pedaste, 2022; Lindner & 
+Berges, 2020; Lindner & Romeike, 2019; Teng et al., 2022), it is still 
+considered to be in the early stages of development (Mertala, Fagerlund, 
+& Calderon, 2022). This literature review synthesizes myths, mis- and 
+preconceptions about AI among learners, with the goal of informing the 
+development of more effective teaching and outreach strategies in the 
+field. Under the term ‘learners’ we summarize individuals engaged in a 
+formal process of learning, like students from schools and universities as 
+well as participants of professional developments. 
+The objectives of this review are 1) to identify and consolidate 
+common mis- and preconceptions about AI among learners, 2) cluster 
+them into themes under a framework, and 3) identify possible research 
+gaps in the literature. To identify these potential research gaps it will be 
+important to see which groups of learners are already covered quite 
+* Corresponding author. Technical University of Munich, Arcisstraße 31, 80333, Munich, Germany. 
+E-mail address: arne.bewersdorff@tum.de (A. Bewersdorff).  
+Contents lists available at ScienceDirect 
+Computers and Education: Artificial Intelligence 
+journal homepage: www.sciencedirect.com/journal/computers-and-education-artificial-intelligence 
+https://doi.org/10.1016/j.caeai.2023.100143 
+Received 18 March 2023; Received in revised form 2 May 2023; Accepted 25 May 2023   

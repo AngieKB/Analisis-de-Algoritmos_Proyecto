@@ -1,0 +1,63 @@
+Computers and Education: Artificial Intelligence 1 (2020) 100002Contents lists available at ScienceDirect
+Computers and Education: Artificial Intelligence
+journal homepage: www.elsevier.com/locate/caeaiApplication and theory gaps during the rise of Artificial Intelligence
+in Education
+Xieling Chen a, Haoran Xie b,*, Di Zou c, Gwo-Jen Hwang d
+a Department of Mathematics and Information Technology, The Education University of Hong Kong, Hong Kong SAR, 10 Lo Ping Road, Tai Po, New Territories, Hong Kong
+b Department of Computing and Decision Sciences, Lingnan University, Hong Kong SAR, 8 Castle Peak Road, Tuen Mun, New Territories, Hong Kong
+c Department of English Language Education, The Education University of Hong Kong, Hong Kong SAR, 10 Lo Ping Road, Tai Po, New Territories, Hong Kong
+d Graduate Institute of Digital Learning and Education, National Taiwan University of Science and Technology, TaiwanA R T I C L E I N F O
+Keywords:
+Artificial intelligence in education
+Systematic review
+Application gap
+Theory gap* Corresponding author.
+E-mail addresses: xielingchen0708@gmail.com
+(G.-J. Hwang).
+https://doi.org/10.1016/j.caeai.2020.100002
+Received 18 July 2020; Received in revised form 5
+2666-920X/© 2020 The Author(s). Published by Els
+nc-nd/4.0/).A B S T R A C T
+Considering the increasing importance of Artificial Intelligence in Education (AIEd) and the absence of a
+comprehensive review on it, this research aims to conduct a comprehensive and systematic review of influential
+AIEd studies. We analyzed 45 articles in terms of annual distribution, leading journals, institutions, countries/
+regions, the most frequently used terms, as well as theories and technologies adopted. We also evaluated defi-
+nitions of AIEd from broad and narrow perspectives and clarified the relationship among AIEd, Educational Data
+Mining, Computer-Based Education, and Learning Analytics. Results indicated that: 1) there was a continuingly
+increasing interest in and impact of AIEd research; 2) little work had been conducted to bring deep learning
+technologies into educational contexts; 3) traditional AI technologies, such as natural language processing were
+commonly adopted in educational contexts, while more advanced techniques were rarely adopted, 4) there was a
+lack of studies that both employ AI technologies and engage deeply with educational theories. Findings suggested
+scholars to 1) seek the potential of applying AI in physical classroom settings; 2) spare efforts to recognize detailed
+entailment relationships between learners’ answers and the desired conceptual understanding within intelligent
+tutoring systems; 3) pay more attention to the adoption of advanced deep learning algorithms such as generative
+adversarial network and deep neural network; 4) seek the potential of NLP in promoting precision or personalized
+education; 5) combine biomedical detection and imaging technologies such as electroencephalogram, and target
+at issues regarding learners’ during the learning process; and 6) closely incorporate the application of AI tech-
+nologies with educational theories.1. Introduction
+Artificial Intelligence in Education (AIEd) concerns mainly about the
+development of “computers which perform cognitive tasks, usually
+associated with human minds, particularly learning and problem-solving
+(p. 10)” (Baker and Smith (2019). AIEd has become a field of scientific
+research for more than 30 years (Luckin, Holmes, Griffiths, & Forcier,
+2016). Interest in understanding and improving the adoption of AI
+techniques for educational purposes is higher than it has ever been, not
+only within educational institutions but also in government sectors.
+There are few reviews of the topic (e.g., Hinojo-Lucena, Aznar-Díaz,
+Caceres-Reche, & Romero-Rodríguez, 2019; Roll & Wylie, 2016;
+Zawacki-Richter, Marín, Bond, & Gouverneur, 2019), yet, to our(X. Chen), hrxie2@gmail.com
+August 2020; Accepted 5 Augus
+evier Ltd. This is an open access aknowledge, currently, no systematic review of influential research con-
+cerning AIEd is available. This research aims to present a thorough
+overview of the influential academic studies concerning AIEd worldwide
+using a systematic review method. This study first clarifies what is a
+broad AIEd and a narrow AIEd, and then conducts a systematic analysis
+of 45 highly cited AIEd articles to identify the development, trends, and
+technologies adopted, as well as major research issues concerned by the
+AIEd community.
+This remaining of this section is composed by three subsections.
+Section 1.1 introduces the application of AI techniques in education.
+Section 1.2 introduces citation-based literature analysis. Finally, section
+1.3 illustrates the research aim and questions.(H. Xie), dizoudaisy@gmail.com (D. Zou), gjhwang.academic@gmail.com
+t 2020
+rticle under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-

@@ -1,0 +1,36 @@
+Vol:.(1234567890)
+Journal for STEM Education Research (2023) 6:408–426
+https://doi.org/10.1007/s41979-023-00112-x
+1 3
+RESEARCH REVIEW
+A Systematic Review of AI‑Driven Educational Assessment 
+in STEM Education
+Fan Ouyang1  · Tuan Anh Dinh1 · Weiqi Xu1
+Accepted: 20 October 2023 / Published online: 9 November 2023 
+© The Author(s), under exclusive licence to Springer Nature Switzerland AG 2023
+Abstract
+Artificial intelligence (AI), as an emerging technology, has been widely used in 
+STEM education to promote the educational assessment. Although AI-driven edu-
+cational assessment has the potential to assess students’ learning automatically and 
+reduce the workload of instructors, there is still a lack of review works to holisti-
+cally examine the field of AI-driven educational assessment, especially in the STEM 
+education context. To gain an overview of the application of AI-driven educational 
+assessment in STEM education, this research conducted a systematic review based 
+on 17 empirical research published from 2011 January to 2023 April. Specifically, 
+this review examined the functions, algorithms, and effects of AI applications in 
+STEM educational assessment. The results clarified three main functions of AI-
+driven educational assessment, namely academic performance assessment, learn-
+ing status assessment, and instructional quality assessment. Moreover, the system-
+atic review found that both traditional algorithms (e.g., natural language processing, 
+machine learning) and advanced algorithms (e.g., deep learning, neural fuzzy sys-
+tems) were applied in STEM educational assessment. Furthermore, the educational 
+and technological effects of applying AI-driven educational assessment in STEM 
+education were revealed. Based on the results, this research proposed educational 
+and technological implications to guide the future practice and research of AI-driven 
+educational assessment in STEM education.
+Keywords Artificial intelligence · Artificial intelligence in education · Educational 
+assessment · STEM education
+ * Fan Ouyang 
+ fanouyang@zju.edu.cn
+1 College of Education, Zhejiang University, #866, Yuhangtang Rd., Hangzhou 310058, Zhejiang, 
+China

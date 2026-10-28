@@ -1,0 +1,74 @@
+Computers and Education: Artificial Intelligence 3 (2022) 100101
+Available online 26 September 2022
+2666-920X/© 2022 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-
+nc-nd/4.0/).
+Artificial intelligence literacy in higher and adult education: A scoping 
+literature review 
+Matthias Carl Laupichler *, Alexandra Aster, Jana Schirch, Tobias Raupach 
+Institute of Medical Education, University Hospital Bonn, Bonn, Germany   
+A R T I C L E  I N F O   
+Keywords: 
+AI literacy 
+Higher education 
+Literature review 
+AI education 
+Teaching AI 
+A B S T R A C T   
+Since artificial intelligence (AI) is finding its way into more and more areas of everyday life, improving the AI 
+skills of non-experts is important and will become even more relevant in the future. While it is necessary that 
+children learn about the possibilities of AI at an early age, adults in higher education and beyond should also 
+have at least a basic understanding of AI (i.e., AI literacy) to be able to interact effectively with the technology. 
+To evaluate the current state of the literature on AI literacy in higher and adult education, a scoping literature 
+review was conducted with the objective of identifying thematic foci and recent research trends. Ten research 
+databases were searched and out of 902 initial records, 30 studies were identified using predefined eligibility 
+criteria, whereof the content was evaluated in the review. The results indicated that research in this area is still in 
+its infancy and needs refinement in terms of how to define AI literacy in adult education as well as what content 
+should be taught to non-experts. Lastly, several recommendations for research and practice are derived from the 
+results.   
+1. Introduction 
+1.1. Defining AI literacy 
+Artificial intelligence (AI) is permeating more and more areas of 
+daily life, and is increasingly being used in professional context such as 
+education (Chen et al., 2020; Hwang et al., 2020), healthcare delivery 
+(Matheny, Whicher, & Israni, 2020; Noorbakhsh-Sabet et al., 2019; 
+Maddox, Rumsfeld, & Payne, 2019), or marketing (Vlačić, Corbo, Costa 
+e Silva, & Dabić, 2021; Verma, Sharma, Deb, & Maitra, 2021), to name 
+just a few examples. Accordingly, the training of competencies in the 
+field of artificial intelligence is extremely relevant not only for future 
+artificial intelligence professionals, but also for people who are not 
+computer scientists, mathematicians or AI engineers themselves, since 
+they will have to interact with these new technologies on a daily basis. 
+The ability to understand, use, monitor, and critically reflect on AI 
+applications without necessarily being able to develop AI models 
+themselves is commonly referred to as being “AI literate” (Long et al., 
+2021; Ng et al., 2021a). To the best of our knowledge, the term was first 
+used in an online article in 2015 (Konishi, 2015) and was picked up in an 
+empirical article shortly afterwards (Kandlhofer et al., 2016). The term 
+joins a long line of proposed literacies intended to symbolize the 
+understanding of a particular technological construct, e.g., “digital lit-
+eracy” (Gilster, 1997), “media literacy” (Livingstone, 2004), or more 
+recently “data literacy” (Wolff et al., 2016). “AI literacy” encompasses 
+AI competencies that the general population should possess and 
+accordingly focuses mainly on learners without a computer science 
+background (“non-experts”). A frequently cited definition of AI literacy 
+was developed by Long and Magerko (2020, p. 2), who define it as “a set 
+of competencies that enables individuals to critically evaluate AI tech-
+nologies, communicate and collaborate effectively with AI, and use AI as 
+a tool online, at home, and in the workplace”. 
+1.2. Overview of AI literacy programs and related literature 
+Fostering AI literacy is being approached from many different angles. 
+For example, there are initiatives to promote AI literacy already during 
+school. This is illustrated, for example, by initiatives such as “AI4K12” 
+(https://ai4k12.org/), or by journal articles reporting on AI teaching 
+projects (Lee et al., 2021; Ng et al., 2022; Williams, 2021) or AI curricula 
+(Touretzky et al., 2019) in primary/secondary schools. 
+In addition, many governments have recognized the need for AI lit-
+eracy programs in higher and adult education as well. Thus, AI strategies 
+have been published and distributed by the United States (National 
+* Corresponding author. Institute of Medical Education, University Hospital Bonn, Venusberg-Campus 1, 53127, Bonn, Germany. 
+E-mail addresses: matthias.laupichler@ukbonn.de (M.C. Laupichler), alexandra.aster@ukbonn.de (A. Aster), jana.schirch@ukbonn.de (J. Schirch).  
+Contents lists available at ScienceDirect 
+Computers and Education: Artificial Intelligence 
+journal homepage: www.sciencedirect.com/journal/computers-and-education-artificial-intelligence 
+https://doi.org/10.1016/j.caeai.2022.100101 
+Received 25 May 2022; Received in revised form 23 September 2022; Accepted 23 September 2022   

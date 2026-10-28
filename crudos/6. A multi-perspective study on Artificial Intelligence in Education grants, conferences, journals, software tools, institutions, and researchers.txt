@@ -1,0 +1,71 @@
+Computers and Education: Artificial Intelligence 1 (2020) 100005Contents lists available at ScienceDirect
+Computers and Education: Artificial Intelligence
+journal homepage: www.elsevier.com/locate/caeaiA multi-perspective study on Artificial Intelligence in Education: grants,
+conferences, journals, software tools, institutions, and researchers
+Xieling Chen a, Haoran Xie b,*, Gwo-Jen Hwang c
+a Department of Mathematics and Information Technology, The Education University of Hong Kong, 10 Lo Ping Road, Tai Po, New Territories, Hong Kong Special
+Administrative Region
+b Department of Computing and Decision Sciences, Lingnan University, 8 Castle Peak Road, Tuen Mun, New Territories, Hong Kong Special Administrative Region
+c Graduate Institute of Digital Learning and Education, National Taiwan University of Science and Technology, Taipei, TaiwanA R T I C L E I N F O
+Keywords:
+Artificial intelligence in education
+Multiple perspectives
+Funding trend
+Major research issues* Corresponding author.
+E-mail addresses: xielingchen0708@gmail.com (
+https://doi.org/10.1016/j.caeai.2020.100005
+Received 14 August 2020; Received in revised form
+2666-920X/© 2020 The Author(s). Published by Els
+nc-nd/4.0/).A B S T R A C T
+With the rapid development of artificial intelligence (AI) technologies and a continuously growing interest in their
+application in educational contexts, there has been significant growth in the scientific literature in relation to the
+application of AI in education (AIEd). This study aims to present multiple perspectives on the development of
+AIEd in terms of relevant grants, conferences, journals, software tools, article trends, top issues, institutions, and
+researchers to provide an overview of AIEd for its further development and implementation. With this study, we
+contribute to the research field by enabling educators and scholars to understand the status and development of
+relevant grants and publications concerning AIEd. Also, findings concerning active actors can help educators and
+scholars identify the active researchers and institutions in the research on AIEd. Furthermore, researchers and
+educators are able to identify relevant journals and be more aware of major issues in AIEd studies. In addition, we
+also highlight the significance and necessity of the launch of the new Elsevier journal AIEd-related journal named
+Computers & Education: Artificial Intelligence.1. Introduction
+Technologies have a significant impact on today’s society and human
+beings. They have greatly changed the way we think, feel, act, and how
+we communicate and interact with each other. Meanwhile, technological
+advancements are rapidly and tremendously changing the ways in which
+we learn and teach. Consequently, the landscape of education is gradu-
+ally changing.
+Especially in recent years, with the advance and prevalence of
+interactive technologies, their applications within and outside of classes
+are steadily gaining in popularity. Such technologies aim to adapt to
+learners’ diverse needs and situations, as well as to enhance competi-
+tiveness in the global education market. Students utilize tablets rather
+than copybooks, and teachers use various educational tools and appli-
+cations such as Google Classroom and Moodle. Also, a great number of
+Massive Open Online Course (MOOC) platforms like Class Central, EdX,
+and Coursera are increasingly available for online learning. The
+increasing number of active MOOC users indicates the wide acceptance
+and appreciation of digital and distance learning technologies. Addi-
+tionally, there are MOOCs that even provide learners with opportunitiesX. Chen), hrxie2@gmail.com (H.
+12 October 2020; Accepted 12
+evier Ltd. This is an open access ato obtain official degrees from distinguished universities and institutes.
+Intrinsically, the future of education is, to a large degree, related to
+the advances in novel intelligent technologies and the rapid development
+of computational capacities. Hence, the educational community is facing
+the opportunity and challenge brought by the continuously developing
+artificial intelligence (AI) technologies, which can potentially and
+fundamentally change the structure, operation, and governance of
+educational institutes (Popenici & Kerr, 2017).
+The work in AI is dedicated to addressing cognitive problems that are
+commonly related to human intelligence. The educational sector is un-
+deniably significantly influenced by AI. AI applications in education
+(AIEd) are widely used by learners and educators nowadays and involve
+various tools and applications, for example, intelligent tutoring systems,
+teaching robots, and adaptive learning systems. AIEd supports learning
+occurring in both traditional classes and workplaces by combining AI and
+various learning sciences, for example, education, psychology, linguis-
+tics, and neuroscience, aiming at stimulating and advancing the devel-
+opment of AI-driven educational applications featuring flexibility,
+personalization, and effectiveness(Luckin, Holmes, Griffiths, & Forcier,
+2016).Xie), gjhwang.academic@gmail.com (G.-J. Hwang).
+October 2020
+rticle under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-

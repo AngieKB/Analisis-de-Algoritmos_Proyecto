@@ -1,0 +1,68 @@
+Computers and Education: Artificial Intelligence 4 (2023) 100138
+Available online 1 May 2023
+2666-920X/© 2023 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-
+nc-nd/4.0/).
+Opportunities of artificial intelligence for supporting complex 
+problem-solving: Findings from a scoping review 
+Srecko Joksimovic a,b,*, Dirk Ifenthaler c,d, Rebecca Marrone a,b, Maarten De Laat a,b, 
+George Siemens a,b 
+a Education Futures, University of South Australia, Australia 
+b Centre for Change and Complexity in Learning, University of South Australia, Australia 
+c Business School, University of Mannheim, Germany 
+d UNESCO Deputy Chair on Data Science in Higher Education Learning and Teaching, Curtin University, Australia  
+A B S T R A C T   
+The research objective of this paper is to advance knowledge about the role of artificial intelligence (AI) in complex problem-solving. A problem is complex due to the 
+large number of highly inter-connected variables affecting the problem state. Complex problem-solving situations often change decremental or worsen, forcing a 
+problem solver to act immediately, under considerable time pressure. While research findings support the assumption that (1) affective, (2) (meta-)cognitive, and (3) 
+social processes support complex problem-solving, opportunities of AI for supporting complex problem-solving need to be further investigated. This article presents a 
+scoping review of relevant literature from the last five years. The study included, N = 38 studies for coding and analysis. Our findings show that in addition to the 
+increased number of publications, the current trend suggests increased quality of published work. Human-AI collaboration in complex problem-solving has been 
+explored across a broad variety of AI application domains. However, the four dimensions of complex problem – namely, cognitive, metacognitive, social and affective 
+- have been augmented by AI to a different extent. Although most of the work has been done in the cognitive domain, it is encouraging to see progress across social 
+and affective dimensions as well. Implications for future research and practice are being discussed.   
+1. Introduction 
+Complex problem-solving involves engaging with problems that are 
+dynamic, could have multiple solutions, and usually require multidis-
+ciplinary teamwork (Dörner, 1980). These are “problems that resemble 
+real-life situations” (Kunze et al., 2018, p. 3). As society has become 
+more globalized and interconnected, the problems generated have 
+become more complex and intractable, raising the need for skills to 
+engage with new challenges and also a nuanced understanding of how to 
+approach them. Fortunately, the nature of solving complex problems has 
+changed over the last several decades, due to advances in computer 
+science, artificial intelligence (AI), and cognitive psychology. Specif-
+ically, unprecedented amounts of data, advanced algorithms, and 
+significantly improved computation and distributed infrastructure (such 
+as managed data lakes) now support collaboration across diverse teams. 
+Working collaboratively and using technology such as an active 
+agent to make sense of an abundance of information is a critical skill for 
+successful learning, work, and life in general. Today’s learners and 
+workers also require the ability to navigate and astutely employ a range 
+of social, affective, and cognitive capabilities to make sense of and 
+address complex, real-world problems (Joksimović et al., 2020, 2022; 
+Microsoft, 2020). In order to successfully solve complex problems, the 
+individuals or teams involved must be able to view and simulate the 
+dynamic problem system in its entirety, imagining the events that would 
+take place if a particular action were to be performed (de Laat et al., 
+2020). 
+Solving complex problems, therefore, depends on the ability of in-
+dividuals to integrate diverse background knowledge and expertise into 
+a dynamic collaborative process (Van Den Bossche et al., 2011). 
+Research on collaborative and cooperative learning and work demon-
+strates the importance of social and cognitive processes in creating a 
+common understanding and shared conception of the problem and 
+possible solutions (Van Den Bossche et al., 2011). Group work and 
+complex problem-solving are not detached from emotions and depend 
+on each individual’s motivation and abilities to plan and monitor their 
+activities (Hermes & Stelling, 2016). The research in group and collab-
+orative problem-solving details the importance of understanding the 
+interplay of factors that influence how individuals and groups regulate 
+affective and motivational processes (Hermes & Stelling, 2016). 
+Recent developments in AI have the potential to support the 
+* Corresponding author. Education Futures, University of South Australia, Australia. 
+E-mail address: srecko.joksimovic@unisa.edu.au (S. Joksimovic).  
+Contents lists available at ScienceDirect 
+Computers and Education: Artificial Intelligence 
+journal homepage: www.sciencedirect.com/journal/computers-and-education-artificial-intelligence 
+https://doi.org/10.1016/j.caeai.2023.100138 
+Received 1 February 2023; Received in revised form 17 April 2023; Accepted 18 April 2023   

@@ -1,0 +1,52 @@
+Eur J Educ. 2024;59:e12663.    | 1 of 21
+https://doi.org/10.1111/ejed.12663
+wileyonlinelibrary.com/journal/ejed
+Received: 9 January 2024  |  Revised: 23 March 2024  |  Accepted: 5 April 2024
+DOI: 10.1111/ejed.12663  
+R E V I E W  A R T I C L E
+A comprehensive exploration of artificial 
+intelligence competence frameworks for 
+educators: A critical review
+Tamar Mikeladze1,2  |   Paulien C. Meijer1 |   Roald P. Verhoeff1
+This is an open access article under the terms of the Creative Commons Attribution License, which permits use, distribution and 
+reproduction in any medium, provided the original work is properly cited.
+© 2024 The Authors. European Journal of Education published by John Wiley & Sons Ltd.
+1Radboud Teacher Academy, Radboud 
+University, Nijmegen, the Netherlands
+2Faculty of Education Sciences, Iakob 
+Gogebashvili Telavi State University, Telavi, 
+Georgia
+Correspondence
+Tamar Mikeladze, Radboud Teacher 
+Academy, Radboud University, 
+Erasmusplein 1, Nijmegen 6525 HT, 
+the Netherlands.
+Email: tamar.miqeladze@tesau.edu.ge
+Funding information
+EU; European Union, Grant/Award Number: 
+NEAR/TBS/2021/EA- RP/0086
+Abstract
+Recent literature underscores the need for teachers to 
+develop AI competencies with a recognition of the cur-
+rent lack of well- defined competence frameworks. This 
+critical review investigates teachers' Artificial Intelligence 
+(AI) competence frameworks (AI CFTs), analysing their 
+strengths, weaknesses and practical applications for re-
+searchers, educators and policymakers. It identifies five 
+distinct types of AI CFTs within Competence Construct 
+Claims (Child, S., & Shaw, S. 2023). A conceptual approach 
+to validating competence frameworks. Research Matters: 
+A Cambridge University Press & Assessment publication, 35, 
+27–40.), each addressing the complexities of AI in its early 
+stages. Notably, frameworks derived from empirical data 
+offer detailed descriptions of competencies, while those 
+based on conceptual models provide broader overviews. 
+Highlighting the need for further empirical research, this 
+review helps identify and understand existing approaches 
+to teacher AI competence development and paves the way 
+for integrating AI CFTs into teacher education, ultimately 
+enhancing educators' preparedness to harness AI in their 
+teaching practices.
+K E Y W O R D S
+AI competence frameworks for teachers, AI competencies for 
+educators, AI in education, competence models

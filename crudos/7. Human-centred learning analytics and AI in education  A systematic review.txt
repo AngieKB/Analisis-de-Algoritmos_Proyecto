@@ -1,0 +1,70 @@
+Computers and Education: Artificial Intelligence 6 (2024) 100215
+Contents lists available at ScienceDirect
+Computers and Education: Artificial Intelligence
+journal homepage: www.sciencedirect.com/journal/computers-and-education-artificial-intelligence
+Human-centred learning analytics and AI in education: A systematic 
+literature review
+Riordan Alfredo a,∗, Vanessa Echeverria a,b, Yueqiao Jin a, Lixiang Yan a, Zachari Swiecki a, 
+Dragan Gašević a, Roberto Martinez-Maldonado a
+a Centre for Learning Analytics Monash (CoLAM), Monash University, Clayton, 3800, Victoria, Australia
+b Escuela Superior Politécnica del Litoral, 30.5 Via Perimetral, Guayaquil, Ecuador
+A R T I C L E I N F O A B S T R A C T
+Keywords:
+Human-centered AI
+Human-centered learning analytics
+AI in education
+Stakeholders involvement
+Education technology
+Ethical considerations
+The rapid expansion of Learning Analytics (LA) and Artificial Intelligence in Education (AIED) offers new 
+scalable, data-intensive systems but raises concerns about data privacy and agency. Excluding stakeholders—
+like students and teachers—from the design process can potentially lead to mistrust and inadequately aligned 
+tools. Despite a shift towards human-centred design in recent LA and AIED research, there remain gaps in our 
+understanding of the importance of human control, safety, reliability, and trustworthiness in the design and 
+implementation of these systems. We conducted a systematic literature review to explore these concerns and 
+gaps. We analysed 108 papers to provide insights about i) the current state of human-centred LA/AIED research; 
+ii) the extent to which educational stakeholders have contributed to the design process of human-centred 
+LA/AIED systems; iii) the current balance between human control and computer automation of such systems; 
+and iv) the extent to which safety, reliability and trustworthiness have been considered in the literature. Results 
+indicate some consideration of human control in LA/AIED system design, but limited end-user involvement 
+in actual design. Based on these findings, we recommend: 1) carefully balancing stakeholders’ involvement in 
+designing and deploying LA/AIED systems throughout all design phases 2) actively involving target end-users, 
+especially students, to delineate the balance between human control and automation, and 3) exploring safety, 
+reliability, and trustworthiness as principles in future human-centred LA/AIED systems.1. Introduction
+Artificial Intelligence (AI) advancements are rapidly changing how 
+we carry out our daily activities (Chakraborty et al., 2022). In educa-
+tional contexts, AI and LA innovations are prompting a significant trans-
+formation by both enabling innovative teaching and learning strategies 
+(Markauskaite et al., 2022) and, at the same time, challenging current 
+assessment practices (Swiecki et al., 2022). Emerging Learning Analyt-
+ics and AI in education (LA/AIED) systems offer novel data-intensive 
+solutions that promise to enable adaptive and personalised teaching 
+and learning experiences at scale (Buckingham Shum & Luckin, 2019). 
+For instance, various intelligent tutoring systems and LA solutions pro-
+vide personalised learning support and automated feedback (e.g. Maier 
+& Klotz, 2022, Cavalcanti et al., 2021). LA dashboards are providing 
+educators with new means to track student progress and offer tar-
+geted support, potentially leading to improved student outcomes (e.g. 
+* Corresponding author.
+Williamson & Kizilcec, 2022, Fernandez Nieto et al., 2022). LA/AIED 
+systems, paired with novel interaction innovations, such as gamifica-
+tion and mixed reality (e.g. Carter & Egliston, 2023), are also enabling 
+new pedagogical strategies that can potentially make learning more 
+engaging and interactive for students. In sum, educational providers 
+are increasingly adopting LA/AIED systems because data-intensive tech-
+nologies hold the promise of making learning more accessible, scalable, 
+effective, and personalised for students (Macfadyen, 2022) by provid-
+ing various forms of teacher-facing and student-facing user interfaces 
+(Mavrikis & Cukurova, 2021, Buckingham Shum & Luckin, 2019).
+Yet, the proliferation of LA/AIED systems raises key concerns about 
+the privacy of students and security of educational data (Viberg et 
+al., 2022), as well as the potential for algorithms to perpetuate bi-
+ases and discrimination (Uttamchandani & Quick, 2022). The lack of 
+involvement of students and teachers in the design and development of 
+LA/AIED systems can potentially lead to a lack of understanding and Available online 13 March 2024
+2666-920X/© 2024 The Author(s). Published by Elsevier Ltd. This is an open acces
+nc/4.0/).
+E-mail address: riordan.alfredo@monash.edu (R. Alfredo).
+https://doi.org/10.1016/j.caeai.2024.100215
+Received 20 December 2023; Received in revised form 2 March 2024; Accepted 7 Ms article under the CC BY-NC license (http://creativecommons.org/licenses/by-
+arch 2024
