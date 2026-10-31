@@ -23,3 +23,8 @@ test {
 application {
     mainClass = 'Main'
 }
+
+tasks.register('generarGlove', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.proyecto.bibliometria.r1_similitud.algo_ia.GenerarGloVeCorpus'
+}

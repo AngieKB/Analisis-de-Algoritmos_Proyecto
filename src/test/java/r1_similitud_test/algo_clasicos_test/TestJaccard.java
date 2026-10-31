@@ -12,7 +12,7 @@ import com.proyecto.bibliometria.r1_similitud.algo_clasicos.Jaccard;
 import static utilidades_test.LectorAbstract.leerAbstract;
 
 public class TestJaccard {
-    // Caso pequeno con respuesta conocida: 2 en comun de 5 en total = 0.4
+    // Caso pequeño con respuesta conocida: 2 en comun de 5 en total = 0.4
     @Test
     void casoPequenoConocido() {
         List<String> a = List.of("ai", "education", "learning");
