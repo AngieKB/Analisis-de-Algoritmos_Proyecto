@@ -12,7 +12,7 @@ import com.proyecto.bibliometria.r3_busqueda.RabinKarp;
 
 // Tests unitarios para el algoritmo Rabin-Karp.
 // Cubre: busqueda basica, colisiones de hash (verificacion caracter a caracter),
-// casos limite y consistencia con KMP y Boyer-Moore.
+// casos limite, pruebas de fuzz y consistencia con la busqueda ingenua (oraculo).
 
 public class TestRabinKarp {
 
@@ -148,9 +148,10 @@ public class TestRabinKarp {
         // Texto largo y repetitivo maximiza el riesgo de colision de hash.
         // El algoritmo debe verificar caracter a caracter y NO reportar falsos.
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 500; i++) sb.append("ab");
+        for (int i = 0; i < 500; i++)
+            sb.append("ab");
         sb.append("xyz");
-        String texto  = sb.toString();
+        String texto = sb.toString();
         String patron = "xyz";
 
         MetricasBusqueda m = new MetricasBusqueda();
@@ -158,7 +159,7 @@ public class TestRabinKarp {
 
         assertEquals(List.of(1000), pos, "Solo debe haber una ocurrencia al final");
         System.out.println("[RK] colisiones de hash: " + m.colisionesHash
-                         + " | comparaciones: " + m.comparaciones);
+                + " | comparaciones: " + m.comparaciones);
     }
 
     @Test
@@ -171,9 +172,7 @@ public class TestRabinKarp {
         assertEquals(0, m.colisionesHash, "Sin colisiones esperadas en texto corto normal");
     }
 
-    // -----------------------------------------------------------------------
     // Fuzz contra BusquedaIngenua (oraculo) con alfabeto mixto ASCII + Unicode
-    // -----------------------------------------------------------------------
 
     @Test
     void fuzzContraIngenua() {
@@ -181,18 +180,19 @@ public class TestRabinKarp {
         char[] alfabeto = { 'a', 'b', '\u2019', '\u00e9' }; // 'a','b',\u2019,e-acento
         BusquedaIngenua ing = new BusquedaIngenua();
         for (int t = 0; t < 2000; t++) {
-            String texto  = aleatorio(rnd, alfabeto, 1 + rnd.nextInt(40));
+            String texto = aleatorio(rnd, alfabeto, 1 + rnd.nextInt(40));
             String patron = aleatorio(rnd, alfabeto, 1 + rnd.nextInt(5));
             assertEquals(
-                ing.buscar(texto, patron),
-                rk.buscar(texto, patron),
-                "RK vs Ingenua: texto=\"" + texto + "\" patron=\"" + patron + "\"");
+                    ing.buscar(texto, patron),
+                    rk.buscar(texto, patron),
+                    "RK vs Ingenua: texto=\"" + texto + "\" patron=\"" + patron + "\"");
         }
     }
 
     private static String aleatorio(java.util.Random r, char[] a, int n) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n; i++) sb.append(a[r.nextInt(a.length)]);
+        for (int i = 0; i < n; i++)
+            sb.append(a[r.nextInt(a.length)]);
         return sb.toString();
     }
 }

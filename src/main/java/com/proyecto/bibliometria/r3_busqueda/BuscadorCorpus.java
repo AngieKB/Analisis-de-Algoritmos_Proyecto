@@ -62,6 +62,13 @@ public class BuscadorCorpus {
                 ? patron.toLowerCase(Locale.ROOT)
                 : patron;
 
+        // Nota: toLowerCase(Locale.ROOT) puede cambiar la longitud del texto con
+        // ciertos
+        // caracteres Unicode (ej. İ turca se expande a dos chars). Las posiciones
+        // devueltas
+        // por buscar() corresponden al texto convertido, no al texto original.
+        // Los abstracts del corpus no contienen caracteres que cambien de longitud al
+        // pasar a minúsculas.
         List<ResultadoBusqueda> resultados = new ArrayList<>();
         for (File archivo : archivos) {
             String texto = Files.readString(archivo.toPath(), StandardCharsets.UTF_8);
@@ -80,7 +87,8 @@ public class BuscadorCorpus {
 
     // Ejecuta el algoritmo sobre el corpus con calentamiento JIT y multiples
     // repeticiones. Devuelve los resultados de la ultima corrida con las
-    // metricas medianas de tiempo y el total de comparaciones acumulado.
+    // metricas medianas de tiempo y las comparaciones de la ultima ronda
+    // (no un acumulado de todas las rondas).
 
     // @param buscador -> algoritmo a usar
     // @param patron -> texto a localizar
@@ -112,6 +120,7 @@ public class BuscadorCorpus {
         long[][] busqNs = new long[archivos.length][RONDAS_MEDICION];
         long[] cmpTotal = new long[archivos.length];
         long[] colTotal = new long[archivos.length];
+        long[] hashOpsTotal = new long[archivos.length]; // operaciones de rolling hash (RK)
         @SuppressWarnings("unchecked")
         List<Integer>[] ultimasPosiciones = new ArrayList[archivos.length];
 
@@ -124,6 +133,7 @@ public class BuscadorCorpus {
                 if (r == RONDAS_MEDICION - 1) {
                     cmpTotal[a] = m.comparaciones;
                     colTotal[a] = m.colisionesHash;
+                    hashOpsTotal[a] = m.operacionesHash;
                     ultimasPosiciones[a] = pos;
                 }
             }
@@ -142,6 +152,7 @@ public class BuscadorCorpus {
             mMediana.busquedaNs = medBusq;
             mMediana.comparaciones = cmpTotal[a];
             mMediana.colisionesHash = colTotal[a];
+            mMediana.operacionesHash = hashOpsTotal[a];
 
             resultados.add(new ResultadoBusqueda(
                     archivos[a].getName(), buscador.nombre(), patron,
@@ -158,7 +169,7 @@ public class BuscadorCorpus {
         }
 
         long totalOcurrencias = 0;
-        long totalPre = 0, totalBusq = 0, totalCmp = 0, totalCol = 0;
+        long totalPre = 0, totalBusq = 0, totalCmp = 0, totalCol = 0, totalHashOps = 0;
 
         for (ResultadoBusqueda r : resultados) {
             if (!r.posiciones.isEmpty()) {
@@ -170,17 +181,22 @@ public class BuscadorCorpus {
             totalBusq += r.metricas.busquedaNs;
             totalCmp += r.metricas.comparaciones;
             totalCol += r.metricas.colisionesHash;
+            totalHashOps += r.metricas.operacionesHash;
         }
 
         long archivosConOcurrencias = resultados.stream()
                 .filter(r -> !r.posiciones.isEmpty()).count();
+        // Nota: para RabinKarp, cmp cuenta solo las verificaciones caracter-a-caracter
+        // cuando el hash coincide; hashOps cuenta las n-m actualizaciones de rolling
+        // hash.
+        // Ambas columnas juntas dan la imagen completa del trabajo real del algoritmo.
         System.out.printf(
                 "  → %d ocurrencia(s) en %d archivo(s)%n" +
-                        "    pre=%.4f ms  busq=%.4f ms  cmp=%d  col=%d%n",
+                        "    pre=%.4f ms  busq=%.4f ms  cmp=%d  hashOps=%d  col=%d%n",
                 totalOcurrencias, archivosConOcurrencias,
                 totalPre / 1_000_000.0,
                 totalBusq / 1_000_000.0,
-                totalCmp, totalCol);
+                totalCmp, totalHashOps, totalCol);
     }
 
     // Punto de entrada interactivo

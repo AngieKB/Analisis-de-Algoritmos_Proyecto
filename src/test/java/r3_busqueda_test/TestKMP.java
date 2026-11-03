@@ -21,6 +21,12 @@ public class TestKMP {
     // Tabla de prefijos (LPS)
 
     @Test
+    void tablaPrefijosVacio() {
+        int[] lps = KMP.tablaPrefijos("");
+        assertArrayEquals(new int[0], lps);
+    }
+
+    @Test
     void tablaPrefijosSinRepeticion() {
         // "abcde" → todos 0 (ningun prefijo propio es sufijo)
         int[] lps = KMP.tablaPrefijos("abcde");

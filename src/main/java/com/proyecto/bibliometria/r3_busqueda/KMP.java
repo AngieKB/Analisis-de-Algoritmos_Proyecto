@@ -37,6 +37,7 @@ public class KMP implements Buscador {
     // @return -> arreglo lps de longitud m
     public static int[] tablaPrefijos(String patron) {
         int m = patron.length();
+        if (m == 0) return new int[0];
         int[] lps = new int[m];
         lps[0] = 0;
 

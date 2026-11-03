@@ -13,7 +13,7 @@ import com.proyecto.bibliometria.r3_busqueda.MetricasBusqueda;
 
 // Tests unitarios para el algoritmo Boyer-Moore.
 // Cubre: tabla de caracter malo, tabla de sufijo bueno, busqueda basica,
-// casos limite y consistencia con KMP y Rabin-Karp.
+// casos limite, pruebas de fuzz y consistencia con la busqueda ingenua (oraculo).
 
 public class TestBoyerMoore {
 

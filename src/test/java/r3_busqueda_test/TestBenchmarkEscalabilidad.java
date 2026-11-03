@@ -15,25 +15,25 @@ import com.proyecto.bibliometria.r3_busqueda.MetricasBusqueda;
 import com.proyecto.bibliometria.r3_busqueda.RabinKarp;
 
 // Benchmark de escalabilidad para el informe.
-//
+
 // Ejecuta los cuatro algoritmos sobre textos de n = 10^4, 10^5 y 10^6
 // caracteres, mas dos casos adversos que destacan las diferencias asintoticas:
-//
-//   Caso A: texto a^n, patron a^(m-1)b
-//     Castiga a la Busqueda Ingenua: en cada posicion coinciden m-1 caracteres
-//     antes de fallar, dando O(n*m) comparaciones.
-//     KMP y BM lo resuelven en O(n).
-//
-//   Caso B: texto a^n, patron a^m
-//     Castiga a Boyer-Moore con muchas ocurrencias: cada posicion es una
-//     ocurrencia, BM no puede saltar y degenera a O(n*m).
-//     KMP lo resuelve en O(n).
-//
+
+// Caso A: texto a^n, patron a^(m-1)b
+// Castiga a la Busqueda Ingenua: en cada posicion coinciden m-1 caracteres
+// antes de fallar, dando O(n*m) comparaciones.
+// KMP y BM lo resuelven en O(n).
+
+// Caso B: texto a^n, patron a^m
+// Castiga a Boyer-Moore con muchas ocurrencias: cada posicion es una
+// ocurrencia, BM no puede saltar y degenera a O(n*m).
+// KMP lo resuelve en O(n).
+
 // Nota sobre el ruido de nanoTime en preprocesamiento:
-//   Para patrones de ~8 chars, construir la tabla LPS toma decenas de ns,
-//   cerca del costo de la propia llamada a nanoTime. Para el informe, repite
-//   el preprocesamiento N_PRE veces y divide para obtener un promedio estable.
-public class BenchmarkEscalabilidad {
+// Para patrones de ~8 chars, construir la tabla LPS toma decenas de ns,
+// cerca del costo de la propia llamada a nanoTime. Para el informe, repite
+// el preprocesamiento N_PRE veces y divide para obtener un promedio estable.
+public class TestBenchmarkEscalabilidad {
 
     private static final int CALENTAMIENTO = 5;
     private static final int REPETICIONES = 9;
@@ -45,9 +45,7 @@ public class BenchmarkEscalabilidad {
     private static final List<Buscador> ALGORITMOS = List.of(
             new BusquedaIngenua(), new KMP(), new BoyerMoore(), new RabinKarp());
 
-    // -----------------------------------------------------------------------
     // Escalabilidad con texto aleatorio (patron corto y frecuente)
-    // -----------------------------------------------------------------------
 
     @Test
     void escalabilidadTextoAleatorio() {
@@ -55,13 +53,14 @@ public class BenchmarkEscalabilidad {
         String patron = "learning";
 
         System.out.println("\n=== Escalabilidad texto aleatorio | patron=\"" + patron + "\" ===");
-        System.out.printf("%-14s  %10s  %10s  %10s  %12s  %12s%n",
-                "Algoritmo", "10^4 ms", "10^5 ms", "10^6 ms", "cmp@10^6", "pre_avg_ns");
-        System.out.println("-".repeat(80));
+        System.out.printf("%-14s  %10s  %10s  %10s  %15s  %12s%n",
+                "Algoritmo", "10^4 ms", "10^5 ms", "10^6 ms", "cmp / hashOps", "pre_avg_ns");
+        System.out.println("-".repeat(85));
 
         for (Buscador b : ALGORITMOS) {
             double[] ms = new double[tamanios.length];
             long[] cmps = new long[tamanios.length];
+            long[] hashOps = new long[tamanios.length];
             long[] preNs = new long[tamanios.length];
 
             for (int idx = 0; idx < tamanios.length; idx++) {
@@ -75,34 +74,37 @@ public class BenchmarkEscalabilidad {
 
                 // Medicion (mediana de tiempos totales)
                 for (int r = 0; r < REPETICIONES; r++) {
-                    MetricasBusqueda m = new MetricasBusqueda();
+                    MetricasBusqueda mRun = new MetricasBusqueda();
                     long t0 = System.nanoTime();
-                    b.buscar(texto, patron, m);
+                    b.buscar(texto, patron, mRun);
                     ns[r] = System.nanoTime() - t0;
-                    mLast = m;
+                    mLast = mRun;
                 }
                 Arrays.sort(ns);
                 ms[idx] = ns[REPETICIONES / 2] / 1_000_000.0;
                 cmps[idx] = mLast.comparaciones;
+                hashOps[idx] = mLast.operacionesHash;
 
                 // Preprocesamiento promediado sobre N_PRE repeticiones
                 long preAcum = 0;
                 for (int r = 0; r < N_PRE; r++) {
-                    MetricasBusqueda m = new MetricasBusqueda();
-                    b.buscar(texto.substring(0, Math.min(600, texto.length())), patron, m);
-                    preAcum += m.preprocesamientoNs;
+                    MetricasBusqueda mPre = new MetricasBusqueda();
+                    b.buscar(texto.substring(0, Math.min(600, texto.length())), patron, mPre);
+                    preAcum += mPre.preprocesamientoNs;
                 }
                 preNs[idx] = preAcum / N_PRE;
             }
 
-            System.out.printf("%-14s  %10.3f  %10.3f  %10.3f  %12d  %12d%n",
-                    b.nombre(), ms[0], ms[1], ms[2], cmps[2], preNs[2]);
+            String detalleOperaciones = (hashOps[2] > 0)
+                    ? cmps[2] + " / " + hashOps[2] + "h"
+                    : String.valueOf(cmps[2]);
+
+            System.out.printf("%-14s  %10.3f  %10.3f  %10.3f  %15s  %12d%n",
+                    b.nombre(), ms[0], ms[1], ms[2], detalleOperaciones, preNs[2]);
         }
     }
 
-    // -----------------------------------------------------------------------
     // Caso adverso A: a^n + patron a^(m-1)b → castiga Busqueda Ingenua
-    // -----------------------------------------------------------------------
 
     @Test
     void casoAdversoIngenua() {
@@ -142,9 +144,7 @@ public class BenchmarkEscalabilidad {
         }
     }
 
-    // -----------------------------------------------------------------------
     // Caso adverso B: a^n + patron a^m → muchas ocurrencias, castiga BM
-    // -----------------------------------------------------------------------
 
     @Test
     void casoAdversoBoyerMoore() {
@@ -183,9 +183,7 @@ public class BenchmarkEscalabilidad {
         }
     }
 
-    // -----------------------------------------------------------------------
     // Helpers
-    // -----------------------------------------------------------------------
 
     private static String generarAleatorio(int n, long seed) {
         java.util.Random rnd = new java.util.Random(seed);
