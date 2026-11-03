@@ -34,7 +34,7 @@ public class Levenshtein {
             tabla[0][j] = j;
         }
 
-        // Llenar el resto de la tabla, fila por fila, de izquierda a derecha
+        // Llena el resto de la tabla, fila por fila, de izquierda a derecha
         // En este orden, las 3 celdas vecinas que se necesitan ya estan llenas
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {

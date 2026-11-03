@@ -32,7 +32,7 @@ public class TestLevenshtein {
         assertEquals(1.0, Levenshtein.similitud(tokens, tokens), 1e-9);
     }
 
-    // Dos abstracts reales distintos: similitud entre 0 y 1, y simetrica
+    // Dos abstracts reales distintos, similitud entre 0 y 1, y simetrica
     @Test
     void dosAbstractsReales() throws Exception {
         Preprocesador prep = new Preprocesador();

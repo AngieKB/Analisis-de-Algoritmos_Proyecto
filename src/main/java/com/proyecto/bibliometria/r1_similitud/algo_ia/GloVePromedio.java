@@ -24,10 +24,10 @@ public class GloVePromedio {
     private final Map<String, double[]> vectores = new HashMap<>();
     private int dimension = 0;
 
-    // Lee un archivo en formato GloVe y guarda SOLO las palabras que estan en el
+    // Lee un archivo en formato GloVe y guarda solo las palabras que estan en el
     // vocabulario
     // el archivo completo trae 400.000 palabras
-    // Formato de cada linea: palabra n1 n2 n3 ... (separados por espacio)
+    // Formato de cada linea: palabra n1 n2 n3 ... n50 (separados por espacio)
     public GloVePromedio(File archivo, Set<String> vocabulario) throws IOException {
         try (BufferedReader lector = Files.newBufferedReader(archivo.toPath(), StandardCharsets.UTF_8)) {
             String linea;

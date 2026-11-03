@@ -42,6 +42,31 @@ public class TestCosenoTFIDF {
         System.out.println("Coseno TF-IDF 11 vs 7 (distinto tema): " + distintoTema);
 
         assertTrue(mismoTema > distintoTema, "Mismo tema deberia parecerse mas");
+
+    }
+
+    @Test
+    void mismoTemaVsDistintoTemaDetallado() throws Exception {
+        CosenoTFIDF modelo = new CosenoTFIDF(leerCorpus());
+
+        List<String> a = leerTokens("11. ");
+        List<String> b = leerTokens("16. ");
+        List<String> c = leerTokens("7. ");
+
+        // Mostrar todos los cálculos de los abstracts 11 y 16
+        modelo.imprimirDetalle("Abstract 11", a, "Abstract 16", b);
+
+        // Mostrar todos los cálculos de los abstracts 11 y 7
+        modelo.imprimirDetalle("Abstract 11", a, "Abstract 7", c);
+
+        double mismoTema = modelo.similitud(a, b);
+        double distintoTema = modelo.similitud(a, c);
+
+        System.out.println("Coseno TF-IDF 11 vs 16: " + mismoTema);
+        System.out.println("Coseno TF-IDF 11 vs 7: " + distintoTema);
+
+        assertTrue(mismoTema > distintoTema,
+                "Mismo tema deberia parecerse mas");
     }
 
 }

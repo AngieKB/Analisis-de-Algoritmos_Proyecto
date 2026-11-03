@@ -25,6 +25,8 @@ public class CosenoTFIDF {
     private final Map<String, Double> idf = new HashMap<>();
 
     // IDF para palabras que no estan en el corpus (df = 0)
+    // Le podemos asignar un valor, porque siempre el idf de una palabra que no esté
+    // en el corpus será igual
     private final double idfDesconocida;
 
     // Recibe el corpus completo, una lista de tokens por cada abstract
@@ -46,6 +48,8 @@ public class CosenoTFIDF {
         }
 
         // IDF: ln((1 + Numero de abstracts) / (1 + df)) + 1
+        // El +1 del numerador evita que el resultado sea un número negativo
+        // El +1 del denominador evita la división por cero
         // El +1 de afuera evita que una palabra presente en todos los abstracts quede
         // con peso 0
         // Esto hace que las palabras que aparecen en pocos abstracts tengan un valor
@@ -53,6 +57,7 @@ public class CosenoTFIDF {
         for (Map.Entry<String, Integer> e : df.entrySet()) {
             idf.put(e.getKey(), Math.log((1.0 + n) / (1.0 + e.getValue())) + 1.0);
         }
+        // IDF de cualquiera desconocida: ln((1 + Numero de abstracts) / (1 + 0)) + 1
         idfDesconocida = Math.log(1.0 + n) + 1.0; // caso df = 0
     }
 
@@ -121,5 +126,95 @@ public class CosenoTFIDF {
             suma += peso * peso;
         }
         return Math.sqrt(suma);
+    }
+
+    // Muestra los cálculos intermedios de la similitud entre dos abstracts
+    // Gracias chatgpt por el metodo
+    public void imprimirDetalle(String nombreA, List<String> a,
+            String nombreB, List<String> b) {
+
+        // Calcular TF de cada abstract
+        Map<String, Integer> tfA = new HashMap<>();
+        for (String palabra : a) {
+            tfA.merge(palabra, 1, Integer::sum);
+        }
+
+        Map<String, Integer> tfB = new HashMap<>();
+        for (String palabra : b) {
+            tfB.merge(palabra, 1, Integer::sum);
+        }
+
+        // Construir los vectores TF-IDF
+        Map<String, Double> va = vectorizar(a);
+        Map<String, Double> vb = vectorizar(b);
+
+        System.out.println("\n======================================");
+        System.out.println("COMPARACION: " + nombreA + " vs " + nombreB);
+        System.out.println("======================================");
+
+        // Mostrar IDF de todas las palabras de ambos abstracts
+        System.out.println("\n--- IDF ---");
+
+        java.util.Set<String> palabras = new java.util.TreeSet<>();
+        palabras.addAll(tfA.keySet());
+        palabras.addAll(tfB.keySet());
+
+        for (String palabra : palabras) {
+            double valor = idf.getOrDefault(palabra, idfDesconocida);
+            System.out.printf("%-20s IDF = %.6f%n", palabra, valor);
+        }
+
+        // Mostrar TF de cada abstract
+        System.out.println("\n--- TF " + nombreA + " ---");
+        System.out.println(new java.util.TreeMap<>(tfA));
+
+        System.out.println("\n--- TF " + nombreB + " ---");
+        System.out.println(new java.util.TreeMap<>(tfB));
+
+        // Mostrar los vectores TF-IDF
+        System.out.println("\n--- VECTOR TF-IDF " + nombreA + " ---");
+        System.out.println(new java.util.TreeMap<>(va));
+
+        System.out.println("\n--- VECTOR TF-IDF " + nombreB + " ---");
+        System.out.println(new java.util.TreeMap<>(vb));
+
+        // Calcular y mostrar el producto punto
+        System.out.println("\n--- PRODUCTO PUNTO ---");
+
+        double productoPunto = 0.0;
+
+        for (String palabra : new java.util.TreeSet<>(va.keySet())) {
+            if (vb.containsKey(palabra)) {
+                double pesoA = va.get(palabra);
+                double pesoB = vb.get(palabra);
+                double producto = pesoA * pesoB;
+
+                System.out.printf("%s: %.6f * %.6f = %.6f%n",
+                        palabra, pesoA, pesoB, producto);
+
+                productoPunto += producto;
+            }
+        }
+
+        System.out.println("Producto punto total = " + productoPunto);
+
+        // Calcular y mostrar las normas
+        double normaA = norma(va);
+        double normaB = norma(vb);
+
+        System.out.println("\n--- NORMAS ---");
+        System.out.println("Norma " + nombreA + " = " + normaA);
+        System.out.println("Norma " + nombreB + " = " + normaB);
+
+        // Mostrar la similitud final
+        double resultado = similitud(a, b);
+
+        System.out.println("\n--- SIMILITUD DEL COSENO ---");
+        System.out.println("S = Producto punto / (Norma A * Norma B)");
+        System.out.println("S = " + productoPunto + " / (" +
+                normaA + " * " + normaB + ")");
+        System.out.println("Resultado = " + resultado);
+
+        System.out.println("======================================\n");
     }
 }

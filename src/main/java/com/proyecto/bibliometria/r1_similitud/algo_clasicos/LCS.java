@@ -35,6 +35,7 @@ public class LCS {
         }
         // La respuesta esta en la esquina inferior derecha
         // Este numero indica la longitud de la LCS
+        System.out.println("Longitud LCS: " + tabla[m][n]);
         return tabla[m][n];
     }
 

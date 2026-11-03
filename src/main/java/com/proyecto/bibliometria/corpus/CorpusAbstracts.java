@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class CorpusAbstracts {
 
@@ -40,5 +42,15 @@ public class CorpusAbstracts {
 
     public int tamano() {
         return nombres.size();
+    }
+
+    // Todas las palabras distintas del corpus, sin repetir
+    // TreeSet para que queden alfabeticaamente
+    public Set<String> vocabulario() {
+        Set<String> vocabulario = new TreeSet<>();
+        for (List<String> documento : tokens) {
+            vocabulario.addAll(documento);
+        }
+        return vocabulario;
     }
 }
