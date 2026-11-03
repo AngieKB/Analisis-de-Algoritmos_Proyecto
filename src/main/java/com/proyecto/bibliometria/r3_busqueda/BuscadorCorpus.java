@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 // Busca un patron de texto en todos los abstracts del corpus.
 // Soporta busqueda sensible e insensible a mayusculas.
@@ -87,16 +88,33 @@ public class BuscadorCorpus {
                 totalNs / 1_000_000.0);
     }
 
-    // Punto de entrada de demostracion
+    // Punto de entrada interactivo: permite al usuario ingresar el patron por consola.
+    // Si se pasa un argumento por linea de comandos, se usa ese directamente.
 
     public static void main(String[] args) throws IOException {
         String carpeta = "abstracts";
-        String patron = args.length > 0 ? args[0] : "learning";
+        String patron;
+
+        if (args.length > 0) {
+            // Patron recibido como argumento de linea de comandos
+            patron = args[0];
+        } else {
+            // Entrada interactiva por consola
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Ingrese el patron de busqueda: ");
+            patron = scanner.nextLine().trim();
+            scanner.close();
+        }
+
+        if (patron.isEmpty()) {
+            System.out.println("El patron no puede estar vacio.");
+            return;
+        }
 
         BuscadorCorpus corpus = new BuscadorCorpus(carpeta);
         List<Buscador> algoritmos = List.of(new KMP(), new BoyerMoore(), new RabinKarp());
 
-        System.out.println("=== Busqueda de patron: \"" + patron + "\" ===\n");
+        System.out.println("\n=== Busqueda de patron: \"" + patron + "\" en " + carpeta + " ===\n");
 
         for (Buscador b : algoritmos) {
             System.out.println("--- " + b.nombre() + " ---");
