@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.proyecto.bibliometria.r3_busqueda.BusquedaIngenua;
+import com.proyecto.bibliometria.r3_busqueda.MetricasBusqueda;
 import com.proyecto.bibliometria.r3_busqueda.RabinKarp;
 
 // Tests unitarios para el algoritmo Rabin-Karp.
@@ -120,17 +122,77 @@ public class TestRabinKarp {
         System.out.println("[Rabin-Karp] Patron \"" + patron + "\" encontrado en posiciones: " + pos);
     }
 
-    // Consistencia entre los tres algoritmos
+    // Consistencia: Rabin-Karp debe dar las mismas posiciones que la ingenua
 
     @Test
-    void consistenciaConKMPYBoyerMoore() {
-        String texto = "the quick brown fox jumps over the lazy dog the";
-        String patron = "the";
+    void consistenciaConIngenua() {
+        BusquedaIngenua ingenua = new BusquedaIngenua();
+        String[] textos = {
+                "the quick brown fox jumps over the lazy dog the",
+                "ababababab", "aaaaab", "abcdefghij", "mississippi"
+        };
+        String[] patrones = { "the", "aba", "aab", "xyz", "issi" };
 
-        List<Integer> pos = rk.buscar(texto, patron);
-        assertEquals(3, pos.size());
-        assertEquals(0, pos.get(0));
-        assertEquals(31, pos.get(1));
-        assertEquals(44, pos.get(2));
+        for (String texto : textos) {
+            for (String patron : patrones) {
+                assertEquals(
+                        ingenua.buscar(texto, patron),
+                        rk.buscar(texto, patron),
+                        "RK vs Ingenua: texto=\"" + texto + "\" patron=\"" + patron + "\"");
+            }
+        }
+    }
+
+    @Test
+    void colisionesNoGeneranFalsosPositivos() {
+        // Texto largo y repetitivo maximiza el riesgo de colision de hash.
+        // El algoritmo debe verificar caracter a caracter y NO reportar falsos.
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 500; i++) sb.append("ab");
+        sb.append("xyz");
+        String texto  = sb.toString();
+        String patron = "xyz";
+
+        MetricasBusqueda m = new MetricasBusqueda();
+        List<Integer> pos = rk.buscar(texto, patron, m);
+
+        assertEquals(List.of(1000), pos, "Solo debe haber una ocurrencia al final");
+        System.out.println("[RK] colisiones de hash: " + m.colisionesHash
+                         + " | comparaciones: " + m.comparaciones);
+    }
+
+    @Test
+    void metricasSeparadas() {
+        MetricasBusqueda m = new MetricasBusqueda();
+        rk.buscar("the quick brown fox", "fox", m);
+        assertTrue(m.preprocesamientoNs >= 0);
+        assertTrue(m.busquedaNs >= 0);
+        assertTrue(m.comparaciones >= 0);
+        assertEquals(0, m.colisionesHash, "Sin colisiones esperadas en texto corto normal");
+    }
+
+    // -----------------------------------------------------------------------
+    // Fuzz contra BusquedaIngenua (oraculo) con alfabeto mixto ASCII + Unicode
+    // -----------------------------------------------------------------------
+
+    @Test
+    void fuzzContraIngenua() {
+        java.util.Random rnd = new java.util.Random(42);
+        char[] alfabeto = { 'a', 'b', '\u2019', '\u00e9' }; // 'a','b',\u2019,e-acento
+        BusquedaIngenua ing = new BusquedaIngenua();
+        for (int t = 0; t < 2000; t++) {
+            String texto  = aleatorio(rnd, alfabeto, 1 + rnd.nextInt(40));
+            String patron = aleatorio(rnd, alfabeto, 1 + rnd.nextInt(5));
+            assertEquals(
+                ing.buscar(texto, patron),
+                rk.buscar(texto, patron),
+                "RK vs Ingenua: texto=\"" + texto + "\" patron=\"" + patron + "\"");
+        }
+    }
+
+    private static String aleatorio(java.util.Random r, char[] a, int n) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) sb.append(a[r.nextInt(a.length)]);
+        return sb.toString();
     }
 }

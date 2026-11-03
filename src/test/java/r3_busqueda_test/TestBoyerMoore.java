@@ -8,6 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.proyecto.bibliometria.r3_busqueda.BoyerMoore;
+import com.proyecto.bibliometria.r3_busqueda.BusquedaIngenua;
+import com.proyecto.bibliometria.r3_busqueda.MetricasBusqueda;
 
 // Tests unitarios para el algoritmo Boyer-Moore.
 // Cubre: tabla de caracter malo, tabla de sufijo bueno, busqueda basica,
@@ -135,17 +137,75 @@ public class TestBoyerMoore {
         System.out.println("[Boyer-Moore] Patron \"" + patron + "\" encontrado en posiciones: " + pos);
     }
 
-    // Consistencia
+    // Consistencia: Boyer-Moore debe dar las mismas posiciones que la ingenua
 
     @Test
-    void consistenciaConKMPYRabinKarp() {
-        String texto = "the quick brown fox jumps over the lazy dog the";
-        String patron = "the";
+    void consistenciaConIngenua() {
+        BusquedaIngenua ingenua = new BusquedaIngenua();
+        String[] textos = {
+                "the quick brown fox jumps over the lazy dog the",
+                "ababababab", "aaaaab", "abcdefghij", "mississippi"
+        };
+        String[] patrones = { "the", "aba", "aab", "xyz", "issi" };
 
-        List<Integer> pos = bm.buscar(texto, patron);
-        assertEquals(3, pos.size());
-        assertEquals(0, pos.get(0));
-        assertEquals(31, pos.get(1));
-        assertEquals(44, pos.get(2));
+        for (String texto : textos) {
+            for (String patron : patrones) {
+                assertEquals(
+                        ingenua.buscar(texto, patron),
+                        bm.buscar(texto, patron),
+                        "BM vs Ingenua: texto=\"" + texto + "\" patron=\"" + patron + "\"");
+            }
+        }
+    }
+
+    @Test
+    void metricasSeparadas() {
+        MetricasBusqueda m = new MetricasBusqueda();
+        bm.buscar("the quick brown fox", "fox", m);
+        assertTrue(m.preprocesamientoNs >= 0, "preprocesamientoNs debe ser >= 0");
+        assertTrue(m.busquedaNs >= 0, "busquedaNs debe ser >= 0");
+        assertTrue(m.comparaciones > 0, "debe haber al menos una comparacion");
+    }
+
+    // Bug fix: chars >= 256 (tipograficos de PDF) no deben saltar coincidencias
+
+    @Test
+    void caracteresFueraDeLatin1() {
+        // \u2019 = comilla tipografica derecha ('), frecuente en PDFs.
+        // Antes del fix, BM trataba \u2019 como "ausente del patron" y saltaba la
+        // coincidencia.
+        assertEquals(List.of(1), bm.buscar("\u2019\u2019a", "\u2019a"));
+    }
+
+    @Test
+    void guionLargoDentDelPatron() {
+        // \u2013 = en dash, otro caracter frecuente en abstracts de PDF
+        assertEquals(List.of(0), bm.buscar("state\u2013of\u2013the\u2013art", "state\u2013of"));
+    }
+
+    // Fuzz contra BusquedaIngenua (oraculo) con alfabeto mixto ASCII + Unicode
+    // Es la prueba mas solida de correctitud que existe:
+    // 2000 pares (texto, patron) aleatorios, incluyendo chars >= 256.
+
+    @Test
+    void fuzzContraIngenua() {
+        java.util.Random rnd = new java.util.Random(42);
+        char[] alfabeto = { 'a', 'b', '\u2019', '\u00e9' }; // 'a','b',\u2019,e-acento
+        BusquedaIngenua ing = new BusquedaIngenua();
+        for (int t = 0; t < 2000; t++) {
+            String texto = aleatorio(rnd, alfabeto, 1 + rnd.nextInt(40));
+            String patron = aleatorio(rnd, alfabeto, 1 + rnd.nextInt(5));
+            assertEquals(
+                    ing.buscar(texto, patron),
+                    bm.buscar(texto, patron),
+                    "BM vs Ingenua: texto=\"" + texto + "\" patron=\"" + patron + "\"");
+        }
+    }
+
+    private static String aleatorio(java.util.Random r, char[] a, int n) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++)
+            sb.append(a[r.nextInt(a.length)]);
+        return sb.toString();
     }
 }
