@@ -27,7 +27,7 @@ public final class GenerarEmbeddingsMiniLM {
             Files.createDirectories(carpetaSalida);
         }
 
-        try (MiniLMEmbeddings modelo = new MiniLMEmbeddings(CARPETA_MODELO)) {
+        try (MiniLMModelo modelo = new MiniLMModelo(CARPETA_MODELO)) {
             List<String> lineas = new ArrayList<>(corpus.tamano() + 1);
             lineas.add("id\ttitulo\tembedding_384");
 

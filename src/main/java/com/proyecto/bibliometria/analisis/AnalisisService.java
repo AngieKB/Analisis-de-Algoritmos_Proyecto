@@ -53,7 +53,7 @@ import com.proyecto.bibliometria.r1_similitud.algo_clasicos.Jaccard;
 import com.proyecto.bibliometria.r1_similitud.algo_clasicos.LCS;
 import com.proyecto.bibliometria.r1_similitud.algo_clasicos.Levenshtein;
 import com.proyecto.bibliometria.r1_similitud.algo_ia.GloVePromedio;
-import com.proyecto.bibliometria.r1_similitud.algo_ia.MiniLMEmbeddingsCache;
+import com.proyecto.bibliometria.r1_similitud.algo_ia.MiniLMEmbeddings;
 import com.proyecto.bibliometria.r2_cluster.AverageLinkage;
 import com.proyecto.bibliometria.r2_cluster.CoeficienteCofenetico;
 import com.proyecto.bibliometria.r2_cluster.CompleteLinkage;
@@ -72,14 +72,14 @@ public class AnalisisService {
 
     private final ArticuloService articuloService;
     private final Preprocesador preprocesador;
-    private final MiniLMEmbeddingsCache miniLM;
+    private final MiniLMEmbeddings miniLM;
     private final String archivoGlove;
     private volatile GloVePromedio glove;
 
     public AnalisisService(
             ArticuloService articuloService,
             Preprocesador preprocesador,
-            MiniLMEmbeddingsCache miniLM,
+            MiniLMEmbeddings miniLM,
             @Value("${app.glove.embedding-file:embeddings/glove_corpus.txt}") String archivoGlove) {
         this.articuloService = articuloService;
         this.preprocesador = preprocesador;
@@ -239,7 +239,7 @@ public class AnalisisService {
                 yield detalle.similarity();
             }
             case MINILM -> {
-                MiniLMEmbeddingsCache.DetalleCoseno detalle = miniLM.traza(
+                MiniLMEmbeddings.DetalleCoseno detalle = miniLM.traza(
                         articuloA.getId(), articuloB.getId());
                 miniLmTrace = new MiniLmTrace(
                         detalle.dimensions(),

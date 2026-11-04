@@ -1,113 +1,144 @@
 package r1_similitud_test.algo_clasicos_test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
-import static utilidades_test.LectorAbstract.leerTokens;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.proyecto.bibliometria.r1_similitud.algo_ia.MiniLMEmbeddings;
-import com.proyecto.bibliometria.r1_similitud.algo_ia.MiniLMEmbeddingsCache;
 
-// Se verifica la carga e inferencia del modelo Transformer local con abstracts reales.
+// Estas pruebas usan vectores MiniLM que ya fueron generados y guardados en un archivo.
+// La caché carga cada ID, título y vector de 384 componentes en memoria.
+// Después calcula el coseno directamente entre los vectores, sin abrir el modelo ONNX
+// ni volver a procesar los abstracts. Así se prueba el uso de embeddings precalculados.
 class TestMiniLMEmbeddings {
 
-    private static final Path CARPETA_MODELO = Path.of("modelos", "transformer");
-    private static MiniLMEmbeddings modelo;
+    @TempDir
+    Path carpetaTemporal;
 
-    // Si los archivos grandes no están instalados, las pruebas se omiten.
-    @BeforeAll
-    static void cargarModelo() throws Exception {
-        assumeTrue(
-                Files.isRegularFile(CARPETA_MODELO.resolve("model.onnx"))
-                        && Files.isRegularFile(CARPETA_MODELO.resolve("tokenizer.json")),
-                "Se requieren modelos/transformer/model.onnx y tokenizer.json");
-        modelo = new MiniLMEmbeddings(CARPETA_MODELO);
-    }
-
-    @AfterAll
-    static void cerrarModelo() {
-        if (modelo != null) {
-            modelo.close();
-        }
-    }
-
-    // El modelo all-MiniLM-L6-v2 debe producir embeddings de 384 componentes finitos.
     @Test
-    void generaEmbeddingDeDimensionEsperada() throws Exception {
-        double[] vector = modelo.vectorizar(leerTokens("11. "));
+    void cargaElArchivoGeneradoParaElCorpus() throws Exception {
+        Path archivo = Path.of("embeddings", "minilm_abstracts.txt");
+        assumeTrue(Files.isRegularFile(archivo), "Primero se deben generar los embeddings MiniLM");
 
-        assertEquals(384, vector.length, "all-MiniLM-L6-v2 debe producir vectores de 384 dimensiones");
-        for (double componente : vector) {
-            assertTrue(Double.isFinite(componente), "Cada componente debe ser finito");
-        }
-    }
+        MiniLMEmbeddings embeddings = new MiniLMEmbeddings(archivo);
+        double mismoTema = embeddings.similitud(11, 16);
+        double distintoTema = embeddings.similitud(11, 7);
 
-    // La similitud coseno de un abstract consigo mismo debe ser 1.
-    @Test
-    void abstractContraSiMismoTieneSimilitudUno() throws Exception {
-        var tokens = leerTokens("11. ");
+        assertEquals(20, embeddings.ids().size());
+        assertTrue(mismoTema > distintoTema);
 
-        assertEquals(1.0, modelo.similitud(tokens, tokens), 1e-6);
-    }
-
-    // Se compara el mismo caso de estudio usado por los otros algoritmos de similitud.
-    @Test
-    void comparaAbstractsDeTemaSimilarYDistinto() throws Exception {
-        var articulo11 = leerTokens("11. ");
-        var articulo16 = leerTokens("16. ");
-        var articulo7 = leerTokens("7. ");
-
-        double mismoTema = modelo.similitud(articulo11, articulo16);
-        double distintoTema = modelo.similitud(articulo11, articulo7);
-
-        System.out.println("MiniLM - Artículo 11 vs 16 (mismo tema): " + mismoTema);
-        System.out.println("MiniLM - Artículo 11 vs 7 (distinto tema): " + distintoTema);
-
-        assertTrue(mismoTema >= -1.0 && mismoTema <= 1.0);
-        assertTrue(distintoTema >= -1.0 && distintoTema <= 1.0);
-        assertTrue(mismoTema > distintoTema,
-                "El par del mismo tema debe obtener mayor similitud en este caso de estudio");
+        System.out.println("MiniLM en caché - artículos cargados: " + embeddings.ids().size());
+        System.out.printf(Locale.ROOT,
+                "MiniLM en caché - Artículo 11 vs 16 (mismo tema): %.12f%n", mismoTema);
+        System.out.printf(Locale.ROOT,
+                "MiniLM en caché - Artículo 11 vs 7 (distinto tema): %.12f%n", distintoTema);
     }
 
     @Test
-    void embeddingsGuardadosCoincidenConLosTokensPreprocesados() throws Exception {
-        var articulo11 = leerTokens("11. ");
-        var articulo16 = leerTokens("16. ");
-        var cache = new MiniLMEmbeddingsCache(Path.of("embeddings", "minilm_abstracts.txt"));
+    void calculaSimilitudDeDosArticulosDesdeArchivo() throws Exception {
+        MiniLMEmbeddings embeddings = cargarEmbeddings();
+        double similitud = embeddings.similitud(11, 16);
 
-        assertEquals(
-                modelo.similitud(articulo11, articulo16),
-                cache.similitud(11, 16),
-                1e-6);
+        assertEquals(0.8, similitud, 1e-8);
+        assertEquals("Artículo 11", embeddings.titulo(11));
+
+        System.out.println("Prueba con vectores controlados de 384 componentes:");
+        System.out.println("Artículo 11: vector unitario en la dimensión 0.");
+        System.out.println("Artículo 16: valores 0.8 en la dimensión 0 y 0.6 en la dimensión 1.");
+        System.out.println("Producto punto = 0.8; ambas normas = 1; coseno = 0.8.");
+        System.out.printf(Locale.ROOT, "Similitud calculada desde la caché: %.8f%n", similitud);
     }
 
-    // Se comparan varios abstracts a la vez; la matriz debe ser cuadrada y simétrica.
     @Test
-    void generaMatrizSimetricaParaTresAbstracts() throws Exception {
-        var abstracts = java.util.List.of(
-                leerTokens("11. "),
-                leerTokens("16. "),
-                leerTokens("7. "));
-
-        double[][] matriz = modelo.matrizSimilitudes(abstracts);
+    void calculaMatrizSimetricaParaVariosArticulos() throws Exception {
+        MiniLMEmbeddings embeddings = cargarEmbeddings();
+        double[][] matriz = embeddings.matrizSimilitudes(List.of(11, 16, 7));
 
         assertEquals(3, matriz.length);
         for (int i = 0; i < matriz.length; i++) {
-            assertEquals(3, matriz[i].length);
             assertEquals(1.0, matriz[i][i], 1e-9);
             for (int j = 0; j < matriz.length; j++) {
                 assertEquals(matriz[i][j], matriz[j][i], 1e-9);
-                assertTrue(matriz[i][j] >= -1.0 && matriz[i][j] <= 1.0);
             }
         }
-        assertTrue(matriz[0][1] > matriz[0][2],
-                "El par de artículos del mismo tema debe tener mayor similitud en este caso de estudio");
+        assertEquals(0.8, matriz[0][1], 1e-8);
+        assertEquals(0.0, matriz[0][2], 1e-8);
+
+        System.out.println("Matriz de similitudes MiniLM en caché, orden de IDs: [11, 16, 7]");
+        imprimirMatriz(matriz);
+        System.out.println("La diagonal vale 1 y los valores a ambos lados de la diagonal son iguales.");
+    }
+
+    @Test
+    void rechazaIdSinEmbeddingGuardado() throws Exception {
+        MiniLMEmbeddings embeddings = cargarEmbeddings();
+
+        assertThrows(IllegalArgumentException.class, () -> embeddings.similitud(11, 99));
+        System.out.println("Validación correcta: la caché rechaza el artículo 99 porque no tiene embedding.");
+    }
+
+    @Test
+    void rechazaVectorConDimensionIncorrecta() throws Exception {
+        Path archivo = carpetaTemporal.resolve("embeddings.txt");
+        Files.writeString(archivo,
+                "id\ttitulo\tembedding_384\n1\tArtículo 1\t1.0\n",
+                StandardCharsets.UTF_8);
+
+        assertThrows(IOException.class, () -> new MiniLMEmbeddings(archivo));
+        System.out.println("Validación correcta: se rechaza el archivo porque el vector no tiene 384 componentes.");
+    }
+
+    // Esta caché temporal se crea con vectores sencillos para conocer de antemano
+    // el coseno esperado y comprobar el cálculo sin depender del modelo ni del corpus real.
+    private MiniLMEmbeddings cargarEmbeddings() throws IOException {
+        Path archivo = carpetaTemporal.resolve("embeddings.txt");
+        Files.writeString(archivo, contenidoValido(), StandardCharsets.UTF_8);
+        return new MiniLMEmbeddings(archivo);
+    }
+
+    // Los tres vectores tienen 384 posiciones, igual que MiniLM.
+    // El artículo 11 apunta en la dimensión 0 y el 7 en la dimensión 1, por eso
+    // su coseno es 0. El artículo 16 forma un ángulo con coseno 0.8 respecto al 11.
+    private static String contenidoValido() {
+        double[] a = new double[384];
+        a[0] = 1.0;
+
+        double[] b = new double[384];
+        b[0] = 0.8;
+        b[1] = 0.6;
+
+        double[] c = new double[384];
+        c[1] = 1.0;
+
+        return "id\ttitulo\tembedding_384\n"
+                + fila(11, "Artículo 11", a) + "\n"
+                + fila(16, "Artículo 16", b) + "\n"
+                + fila(7, "Artículo 7", c) + "\n";
+    }
+
+    private static String fila(int id, String titulo, double[] vector) {
+        String componentes = IntStream.range(0, vector.length)
+                .mapToObj(i -> String.format(Locale.ROOT, "%.8f", vector[i]))
+                .collect(Collectors.joining(","));
+        return id + "\t" + titulo + "\t" + componentes;
+    }
+
+    private static void imprimirMatriz(double[][] matriz) {
+        for (double[] fila : matriz) {
+            System.out.println(java.util.Arrays.toString(fila));
+        }
     }
 }

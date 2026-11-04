@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.proyecto.bibliometria.corpus.Preprocesador;
-import com.proyecto.bibliometria.r1_similitud.algo_ia.MiniLMEmbeddingsCache;
+import com.proyecto.bibliometria.r1_similitud.algo_ia.MiniLMEmbeddings;
 
 @Configuration
 public class AlgoritmoConfig {
@@ -19,9 +19,9 @@ public class AlgoritmoConfig {
     }
 
     @Bean
-    MiniLMEmbeddingsCache miniLMEmbeddingsCache(
+    MiniLMEmbeddings miniLMEmbeddings(
             @Value("${app.minilm.embedding-file:embeddings/minilm_abstracts.txt}") String archivo)
             throws IOException {
-        return new MiniLMEmbeddingsCache(Path.of(archivo));
+        return new MiniLMEmbeddings(Path.of(archivo));
     }
 }
