@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -90,6 +91,73 @@ public class GloVePromedio {
         return coseno(vectorizar(a), vectorizar(b));
     }
 
+    public DetalleCoseno trazar(List<String> tokensA, List<String> tokensB) {
+        DetalleVector vectorA = trazarVector(tokensA);
+        DetalleVector vectorB = trazarVector(tokensB);
+        List<ComponenteCoseno> componentes = new ArrayList<>(dimension);
+        double productoPunto = 0.0;
+        double normaCuadradaA = 0.0;
+        double normaCuadradaB = 0.0;
+        for (int i = 0; i < dimension; i++) {
+            double a = vectorA.averageVector().get(i);
+            double b = vectorB.averageVector().get(i);
+            double producto = a * b;
+            productoPunto += producto;
+            normaCuadradaA += a * a;
+            normaCuadradaB += b * b;
+            componentes.add(new ComponenteCoseno(i, a, b, producto));
+        }
+
+        double normaA = Math.sqrt(normaCuadradaA);
+        double normaB = Math.sqrt(normaCuadradaB);
+        double denominador = normaA * normaB;
+        double similitud = normaCuadradaA == 0.0 || normaCuadradaB == 0.0
+                ? 0.0
+                : Math.min(1.0, productoPunto / denominador);
+        return new DetalleCoseno(
+                dimension,
+                "Cada palabra conocida tiene un vector GloVe; el vector del abstract es el promedio componente a componente.",
+                vectorA,
+                vectorB,
+                componentes,
+                productoPunto,
+                normaCuadradaA,
+                normaCuadradaB,
+                normaA,
+                normaB,
+                denominador,
+                similitud);
+    }
+
+    private DetalleVector trazarVector(List<String> tokens) {
+        List<VectorPalabra> vectoresPalabra = new ArrayList<>();
+        List<String> desconocidas = new ArrayList<>();
+        double[] suma = new double[dimension];
+        for (String token : tokens) {
+            double[] vector = vectores.get(token);
+            if (vector == null) {
+                desconocidas.add(token);
+                continue;
+            }
+            List<Double> componentes = new ArrayList<>(dimension);
+            for (int i = 0; i < dimension; i++) {
+                suma[i] += vector[i];
+                componentes.add(vector[i]);
+            }
+            vectoresPalabra.add(new VectorPalabra(token, List.copyOf(componentes)));
+        }
+
+        List<Double> promedio = new ArrayList<>(dimension);
+        for (int i = 0; i < dimension; i++) {
+            promedio.add(vectoresPalabra.isEmpty() ? 0.0 : suma[i] / vectoresPalabra.size());
+        }
+        return new DetalleVector(
+                List.copyOf(vectoresPalabra),
+                List.copyOf(desconocidas),
+                List.copyOf(promedio),
+                vectoresPalabra.size());
+    }
+
     // coseno = (A . B) / (|A| * |B|)
     private static double coseno(double[] a, double[] b) {
         double productoPunto = 0.0;
@@ -106,5 +174,33 @@ public class GloVePromedio {
             return 0.0;
 
         return Math.min(1.0, productoPunto / (Math.sqrt(normaA) * Math.sqrt(normaB)));
+    }
+
+    public record DetalleCoseno(
+            int dimensions,
+            String averagingFormula,
+            DetalleVector vectorA,
+            DetalleVector vectorB,
+            List<ComponenteCoseno> components,
+            double dotProduct,
+            double normSquaredA,
+            double normSquaredB,
+            double normA,
+            double normB,
+            double denominator,
+            double similarity) {
+    }
+
+    public record DetalleVector(
+            List<VectorPalabra> knownWordVectors,
+            List<String> unknownTokens,
+            List<Double> averageVector,
+            int knownTokenCount) {
+    }
+
+    public record VectorPalabra(String token, List<Double> vector) {
+    }
+
+    public record ComponenteCoseno(int index, double valueA, double valueB, double product) {
     }
 }

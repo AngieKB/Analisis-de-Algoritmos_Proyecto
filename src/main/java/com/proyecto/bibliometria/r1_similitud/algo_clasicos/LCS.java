@@ -4,6 +4,47 @@ import java.util.List;
 
 public class LCS {
 
+    public static Traza trazar(List<String> a, List<String> b) {
+        int m = a.size();
+        int n = b.size();
+        int[][] tabla = new int[m + 1][n + 1];
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (a.get(i - 1).equals(b.get(j - 1))) {
+                    tabla[i][j] = tabla[i - 1][j - 1] + 1;
+                } else {
+                    tabla[i][j] = Math.max(tabla[i - 1][j], tabla[i][j - 1]);
+                }
+            }
+        }
+
+        java.util.ArrayList<String> secuencia = new java.util.ArrayList<>();
+        int i = m;
+        int j = n;
+        while (i > 0 && j > 0) {
+            if (a.get(i - 1).equals(b.get(j - 1))) {
+                secuencia.add(a.get(i - 1));
+                i--;
+                j--;
+            } else if (tabla[i - 1][j] >= tabla[i][j - 1]) {
+                i--;
+            } else {
+                j--;
+            }
+        }
+        java.util.Collections.reverse(secuencia);
+        int maximo = Math.max(m, n);
+        double similitud = maximo == 0 ? 1.0 : (double) tabla[m][n] / maximo;
+        return new Traza(
+                List.copyOf(a),
+                List.copyOf(b),
+                tabla,
+                List.copyOf(secuencia),
+                tabla[m][n],
+                maximo,
+                similitud);
+    }
+
     // Subsecuencia Comun Mas Larga (LCS) entre dos listas de tokens
     // Una subsecuencia mantiene el orden pero no tiene que ser contigua
     // Usa programacion dinamica con TABULACION (bottom-up)
@@ -42,9 +83,16 @@ public class LCS {
     // 1 = una lista esta contenida en orden dentro de la otra, 0 = nada en comun
     // Se divide entre el largo de la lista mas larga
     public static double similitud(List<String> a, List<String> b) {
-        int max = Math.max(a.size(), b.size());
-        if (max == 0) // dos listas vacias son identicas (evita dividir entre 0)
-            return 1.0;
-        return (double) longitud(a, b) / max;
+        return trazar(a, b).similarity();
+    }
+
+    public record Traza(
+            List<String> tokensA,
+            List<String> tokensB,
+            int[][] matrix,
+            List<String> longestCommonSubsequence,
+            int lcsLength,
+            int normalizationLength,
+            double similarity) {
     }
 }

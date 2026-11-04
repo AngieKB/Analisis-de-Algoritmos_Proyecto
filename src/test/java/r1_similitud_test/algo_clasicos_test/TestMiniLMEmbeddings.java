@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.proyecto.bibliometria.r1_similitud.algo_ia.MiniLMEmbeddings;
+import com.proyecto.bibliometria.r1_similitud.algo_ia.MiniLMEmbeddingsCache;
 
 // Se verifica la carga e inferencia del modelo Transformer local con abstracts reales.
 class TestMiniLMEmbeddings {
@@ -73,6 +74,18 @@ class TestMiniLMEmbeddings {
         assertTrue(distintoTema >= -1.0 && distintoTema <= 1.0);
         assertTrue(mismoTema > distintoTema,
                 "El par del mismo tema debe obtener mayor similitud en este caso de estudio");
+    }
+
+    @Test
+    void embeddingsGuardadosCoincidenConLosTokensPreprocesados() throws Exception {
+        var articulo11 = leerTokens("11. ");
+        var articulo16 = leerTokens("16. ");
+        var cache = new MiniLMEmbeddingsCache(Path.of("embeddings", "minilm_abstracts.txt"));
+
+        assertEquals(
+                modelo.similitud(articulo11, articulo16),
+                cache.similitud(11, 16),
+                1e-6);
     }
 
     // Se comparan varios abstracts a la vez; la matriz debe ser cuadrada y simétrica.

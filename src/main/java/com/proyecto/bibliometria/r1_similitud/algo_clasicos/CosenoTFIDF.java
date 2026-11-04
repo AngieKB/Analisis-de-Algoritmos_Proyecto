@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class CosenoTFIDF {
 
@@ -23,6 +25,8 @@ public class CosenoTFIDF {
     // idf.get(palabra) = que tan rara es la palabra en el corpus
     // Entre más bajo el valor, más común es la palabra
     private final Map<String, Double> idf = new HashMap<>();
+    private final Map<String, Integer> documentFrequency = new HashMap<>();
+    private final int documentCount;
 
     // IDF para palabras que no estan en el corpus (df = 0)
     // Le podemos asignar un valor, porque siempre el idf de una palabra que no esté
@@ -34,6 +38,7 @@ public class CosenoTFIDF {
     // Lista exterior: Los abstracts
     public CosenoTFIDF(List<List<String>> corpus) {
         int n = corpus.size(); // cantidad de abstracts (20 para los nuestros)
+        this.documentCount = n;
 
         // df = en cuantos abstracts aparece cada palabra
         Map<String, Integer> df = new HashMap<>();
@@ -56,6 +61,7 @@ public class CosenoTFIDF {
         // idf mayor
         for (Map.Entry<String, Integer> e : df.entrySet()) {
             idf.put(e.getKey(), Math.log((1.0 + n) / (1.0 + e.getValue())) + 1.0);
+            documentFrequency.put(e.getKey(), e.getValue());
         }
         // IDF de cualquiera desconocida: ln((1 + Numero de abstracts) / (1 + 0)) + 1
         idfDesconocida = Math.log(1.0 + n) + 1.0; // caso df = 0
@@ -119,13 +125,102 @@ public class CosenoTFIDF {
         return Math.min(1.0, productoPunto / (normaA * normaB));
     }
 
+    public DetalleCoseno traza(List<String> a, List<String> b) {
+        Map<String, Integer> tfA = frecuencias(a);
+        Map<String, Integer> tfB = frecuencias(b);
+        Map<String, Double> vectorA = vectorizar(a);
+        Map<String, Double> vectorB = vectorizar(b);
+        Set<String> terminos = new TreeSet<>(tfA.keySet());
+        terminos.addAll(tfB.keySet());
+
+        List<DetalleTermino> detalles = new java.util.ArrayList<>(terminos.size());
+        double productoPunto = 0.0;
+        for (String termino : terminos) {
+            double pesoA = vectorA.getOrDefault(termino, 0.0);
+            double pesoB = vectorB.getOrDefault(termino, 0.0);
+            double contribucion = pesoA * pesoB;
+            productoPunto += contribucion;
+            detalles.add(new DetalleTermino(
+                    termino,
+                    documentFrequency.getOrDefault(termino, 0),
+                    tfA.getOrDefault(termino, 0),
+                    tfB.getOrDefault(termino, 0),
+                    idf.getOrDefault(termino, idfDesconocida),
+                    pesoA,
+                    pesoB,
+                    contribucion));
+        }
+
+        double normaCuadradaA = normaCuadrada(vectorA);
+        double normaCuadradaB = normaCuadrada(vectorB);
+        double normaA = Math.sqrt(normaCuadradaA);
+        double normaB = Math.sqrt(normaCuadradaB);
+        double denominador = normaA * normaB;
+        double resultado;
+        if (vectorA.isEmpty() && vectorB.isEmpty()) {
+            resultado = 1.0;
+        } else if (vectorA.isEmpty() || vectorB.isEmpty()) {
+            resultado = 0.0;
+        } else {
+            resultado = Math.min(1.0, productoPunto / denominador);
+        }
+
+        return new DetalleCoseno(
+                documentCount,
+                "idf(t) = ln((1 + N) / (1 + df(t))) + 1; peso(t,d) = tf(t,d) * idf(t)",
+                detalles,
+                productoPunto,
+                normaCuadradaA,
+                normaCuadradaB,
+                normaA,
+                normaB,
+                denominador,
+                resultado);
+    }
+
+    private static Map<String, Integer> frecuencias(List<String> tokens) {
+        Map<String, Integer> tf = new HashMap<>();
+        for (String token : tokens) {
+            tf.merge(token, 1, Integer::sum);
+        }
+        return tf;
+    }
+
     // Norma (largo) de un vector
     private static double norma(Map<String, Double> vector) {
+        return Math.sqrt(normaCuadrada(vector));
+    }
+
+    private static double normaCuadrada(Map<String, Double> vector) {
         double suma = 0.0;
         for (double peso : vector.values()) {
             suma += peso * peso;
         }
-        return Math.sqrt(suma);
+        return suma;
+    }
+
+    public record DetalleCoseno(
+            int documentCount,
+            String formula,
+            List<DetalleTermino> terms,
+            double dotProduct,
+            double normSquaredA,
+            double normSquaredB,
+            double normA,
+            double normB,
+            double denominator,
+            double similarity) {
+    }
+
+    public record DetalleTermino(
+            String term,
+            int documentFrequency,
+            int termFrequencyA,
+            int termFrequencyB,
+            double idf,
+            double weightA,
+            double weightB,
+            double dotProductContribution) {
     }
 
     // Muestra los cálculos intermedios de la similitud entre dos abstracts

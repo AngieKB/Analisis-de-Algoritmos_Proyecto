@@ -11,11 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.bibliometria.api.dto.ApiDtos.AlgorithmsResponse;
 import com.proyecto.bibliometria.api.dto.ApiDtos.ClusterResponse;
+import com.proyecto.bibliometria.api.dto.ApiDtos.ClusterTraceResponse;
 import com.proyecto.bibliometria.api.dto.ApiDtos.Linkage;
 import com.proyecto.bibliometria.api.dto.ApiDtos.SearchRequest;
 import com.proyecto.bibliometria.api.dto.ApiDtos.SearchResponse;
+import com.proyecto.bibliometria.api.dto.ApiDtos.SearchTraceRequest;
+import com.proyecto.bibliometria.api.dto.ApiDtos.SearchTraceResponse;
 import com.proyecto.bibliometria.api.dto.ApiDtos.SimilarityRequest;
 import com.proyecto.bibliometria.api.dto.ApiDtos.SimilarityResponse;
+import com.proyecto.bibliometria.api.dto.ApiDtos.SimilarityTraceRequest;
+import com.proyecto.bibliometria.api.dto.ApiDtos.SimilarityTraceResponse;
 import com.proyecto.bibliometria.analisis.AnalisisService;
 
 @RestController
@@ -38,13 +43,28 @@ public class AnalisisController {
         return service.comparar(request);
     }
 
+    @PostMapping("/similarities/trace")
+    public SimilarityTraceResponse trazar(@Valid @RequestBody SimilarityTraceRequest request) {
+        return service.trazar(request);
+    }
+
     @PostMapping("/search")
     public SearchResponse buscar(@Valid @RequestBody SearchRequest request) {
         return service.buscar(request);
     }
 
+    @PostMapping("/search/trace")
+    public SearchTraceResponse trazarBusqueda(@Valid @RequestBody SearchTraceRequest request) {
+        return service.trazarBusqueda(request);
+    }
+
     @GetMapping("/clusters")
     public ClusterResponse agrupar(@RequestParam Linkage linkage) {
         return service.agrupar(linkage);
+    }
+
+    @GetMapping("/clusters/trace")
+    public ClusterTraceResponse trazarAgrupamiento(@RequestParam Linkage linkage) {
+        return service.trazarAgrupamiento(linkage);
     }
 }

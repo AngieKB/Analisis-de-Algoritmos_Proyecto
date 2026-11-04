@@ -59,6 +59,42 @@ public final class MiniLMEmbeddingsCache {
         return coseno(buscarDocumento(idA).vector, buscarDocumento(idB).vector);
     }
 
+    public DetalleCoseno traza(int idA, int idB) {
+        double[] a = buscarDocumento(idA).vector;
+        double[] b = buscarDocumento(idB).vector;
+        List<ComponenteCoseno> componentes = new ArrayList<>(DIMENSION);
+        double productoPunto = 0.0;
+        double normaCuadradaA = 0.0;
+        double normaCuadradaB = 0.0;
+        for (int i = 0; i < DIMENSION; i++) {
+            double producto = a[i] * b[i];
+            productoPunto += producto;
+            normaCuadradaA += a[i] * a[i];
+            normaCuadradaB += b[i] * b[i];
+            componentes.add(new ComponenteCoseno(i, a[i], b[i], producto));
+        }
+
+        double normaA = Math.sqrt(normaCuadradaA);
+        double normaB = Math.sqrt(normaCuadradaB);
+        double denominador = normaA * normaB;
+        double similitud = normaCuadradaA == 0.0 || normaCuadradaB == 0.0
+                ? 0.0
+                : Math.max(-1.0, Math.min(1.0, productoPunto / denominador));
+
+        return new DetalleCoseno(
+                DIMENSION,
+                "Los embeddings MiniLM se generaron a partir de las listas de tokens preprocesadas "
+                        + "y están almacenados en el archivo de vectores.",
+                componentes,
+                productoPunto,
+                normaCuadradaA,
+                normaCuadradaB,
+                normaA,
+                normaB,
+                denominador,
+                similitud);
+    }
+
     // Se calculan las similitudes de dos o más documentos sin invocar el modelo.
     public double[][] matrizSimilitudes(List<Integer> ids) {
         Objects.requireNonNull(ids, "La lista de IDs no puede ser nula");
@@ -136,6 +172,26 @@ public final class MiniLMEmbeddingsCache {
         }
         double resultado = productoPunto / (Math.sqrt(normaA) * Math.sqrt(normaB));
         return Math.max(-1.0, Math.min(1.0, resultado));
+    }
+
+    public record DetalleCoseno(
+            int dimensions,
+            String embeddingSource,
+            List<ComponenteCoseno> components,
+            double dotProduct,
+            double normSquaredA,
+            double normSquaredB,
+            double normA,
+            double normB,
+            double denominator,
+            double similarity) {
+    }
+
+    public record ComponenteCoseno(
+            int index,
+            double valueA,
+            double valueB,
+            double product) {
     }
 
     private static final class Documento {

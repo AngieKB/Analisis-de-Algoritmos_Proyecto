@@ -2,7 +2,6 @@ package com.proyecto.bibliometria.r1_similitud.algo_ia;
 
 import com.proyecto.bibliometria.corpus.CorpusAbstracts;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,18 +22,17 @@ public final class GenerarEmbeddingsMiniLM {
 
     public static void main(String[] args) throws Exception {
         CorpusAbstracts corpus = new CorpusAbstracts(CARPETA_ABSTRACTS.toString());
-        List<String> textos = leerTextos(corpus);
         Path carpetaSalida = ARCHIVO_SALIDA.getParent();
         if (carpetaSalida != null) {
             Files.createDirectories(carpetaSalida);
         }
 
         try (MiniLMEmbeddings modelo = new MiniLMEmbeddings(CARPETA_MODELO)) {
-            List<String> lineas = new ArrayList<>(textos.size() + 1);
+            List<String> lineas = new ArrayList<>(corpus.tamano() + 1);
             lineas.add("id\ttitulo\tembedding_384");
 
-            for (int i = 0; i < textos.size(); i++) {
-                double[] vector = modelo.vectorizarTexto(textos.get(i));
+            for (int i = 0; i < corpus.tamano(); i++) {
+                double[] vector = modelo.vectorizar(corpus.tokens.get(i));
                 if (vector.length != 384) {
                     throw new IllegalStateException(
                             "Se esperaba un embedding de 384 componentes y se recibieron " + vector.length);
@@ -49,23 +47,7 @@ public final class GenerarEmbeddingsMiniLM {
             Files.write(ARCHIVO_SALIDA, lineas, StandardCharsets.UTF_8);
         }
 
-        System.out.println("Embeddings generados para " + textos.size() + " abstracts en "
+        System.out.println("Embeddings generados para " + corpus.tamano() + " abstracts preprocesados en "
                 + ARCHIVO_SALIDA.toAbsolutePath());
-    }
-
-    private static List<String> leerTextos(CorpusAbstracts corpus) throws IOException {
-        List<String> textos = new ArrayList<>(corpus.tamano());
-        for (String nombre : corpus.nombres) {
-            Path archivo = CARPETA_ABSTRACTS.resolve(nombre + ".txt");
-            if (!Files.isRegularFile(archivo)) {
-                throw new IOException("No se encontró el abstract: " + archivo.toAbsolutePath());
-            }
-            String texto = Files.readString(archivo, StandardCharsets.UTF_8);
-            if (texto.isBlank()) {
-                throw new IOException("El abstract está vacío: " + archivo.toAbsolutePath());
-            }
-            textos.add(texto);
-        }
-        return textos;
     }
 }

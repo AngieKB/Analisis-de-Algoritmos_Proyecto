@@ -4,6 +4,32 @@ import java.util.List;
 
 public class Levenshtein {
 
+    public static Traza trazar(List<String> a, List<String> b) {
+        int m = a.size();
+        int n = b.size();
+        int[][] tabla = new int[m + 1][n + 1];
+        for (int i = 0; i <= m; i++) {
+            tabla[i][0] = i;
+        }
+        for (int j = 0; j <= n; j++) {
+            tabla[0][j] = j;
+        }
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (a.get(i - 1).equals(b.get(j - 1))) {
+                    tabla[i][j] = tabla[i - 1][j - 1];
+                } else {
+                    tabla[i][j] = 1 + Math.min(
+                            Math.min(tabla[i - 1][j], tabla[i][j - 1]),
+                            tabla[i - 1][j - 1]);
+                }
+            }
+        }
+        int maximo = Math.max(m, n);
+        double similitud = maximo == 0 ? 1.0 : 1.0 - (double) tabla[m][n] / maximo;
+        return new Traza(List.copyOf(a), List.copyOf(b), tabla, tabla[m][n], maximo, similitud);
+    }
+
     // Distancia de Levenshtein entre dos listas de tokens
     // Este algoritmo cuenta la distancia minima de edicion entre dos secuencias de
     // tokens, por medio de las operaciones: insercion, eliminacion y sustitucion.
@@ -69,9 +95,15 @@ public class Levenshtein {
     // Se divide entre el largo de la lista mas larga porque esa es la
     // distancia maxima posible (borrar todo y escribir todo de nuevo)
     public static double similitud(List<String> a, List<String> b) {
-        int max = Math.max(a.size(), b.size());
-        if (max == 0) // dos listas vacias son identicas (evita dividir entre 0)
-            return 1.0;
-        return 1.0 - (double) distancia(a, b) / max;
+        return trazar(a, b).similarity();
+    }
+
+    public record Traza(
+            List<String> tokensA,
+            List<String> tokensB,
+            int[][] matrix,
+            int editDistance,
+            int normalizationLength,
+            double similarity) {
     }
 }

@@ -53,6 +53,10 @@ public class CoeficienteCofenetico {
     // Correlacion de Pearson entre las distancias originales y las cofeneticas
     // Pearson = covarianza(D, C) / (desviacion(D) * desviacion(C))
     public static double calcular(double[][] d, List<Fusion> fusiones) {
+        return trazar(d, fusiones).coefficient();
+    }
+
+    public static Traza trazar(double[][] d, List<Fusion> fusiones) {
         int n = d.length;
         double[][] c = matrizCofenetica(fusiones, n);
 
@@ -67,6 +71,9 @@ public class CoeficienteCofenetico {
                 pares++;
             }
         }
+        if (pares == 0) {
+            return new Traza(0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, c, List.of());
+        }
         double mediaD = sumaD / pares;
         double mediaC = sumaC / pares;
 
@@ -74,20 +81,49 @@ public class CoeficienteCofenetico {
         double covarianza = 0.0;
         double varianzaD = 0.0;
         double varianzaC = 0.0;
+        List<ParCofenetico> detalles = new ArrayList<>(pares);
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 double desvD = d[i][j] - mediaD;
                 double desvC = c[i][j] - mediaC;
-                covarianza += desvD * desvC;
+                double contribucion = desvD * desvC;
+                covarianza += contribucion;
                 varianzaD += desvD * desvD;
                 varianzaC += desvC * desvC;
+                detalles.add(new ParCofenetico(i, j, d[i][j], c[i][j], desvD, desvC, contribucion));
             }
         }
 
         // Si todas las distancias son iguales no hay variacion que correlacionar
-        if (varianzaD == 0.0 || varianzaC == 0.0)
-            return 0.0;
+        if (varianzaD == 0.0 || varianzaC == 0.0) {
+            return new Traza(pares, mediaD, mediaC, covarianza, varianzaD, varianzaC, 0.0, c,
+                    List.copyOf(detalles));
+        }
 
-        return covarianza / Math.sqrt(varianzaD * varianzaC);
+        double coeficiente = covarianza / Math.sqrt(varianzaD * varianzaC);
+        return new Traza(pares, mediaD, mediaC, covarianza, varianzaD, varianzaC, coeficiente, c,
+                List.copyOf(detalles));
+    }
+
+    public record Traza(
+            int pairCount,
+            double meanOriginalDistance,
+            double meanCopheneticDistance,
+            double covarianceSum,
+            double originalVarianceSum,
+            double copheneticVarianceSum,
+            double coefficient,
+            double[][] copheneticMatrix,
+            List<ParCofenetico> pairs) {
+    }
+
+    public record ParCofenetico(
+            int articleAIndex,
+            int articleBIndex,
+            double originalDistance,
+            double copheneticDistance,
+            double centeredOriginalDistance,
+            double centeredCopheneticDistance,
+            double covarianceContribution) {
     }
 }

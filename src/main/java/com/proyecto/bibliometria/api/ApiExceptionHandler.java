@@ -32,6 +32,8 @@ public class ApiExceptionHandler {
                         .map(error -> error.getField() + ": " + error.getDefaultMessage())
                         .distinct()
                         .collect(java.util.stream.Collectors.joining("; "))
+                : exception instanceof IllegalArgumentException illegalArgumentException
+                        ? illegalArgumentException.getMessage()
                 : "La solicitud contiene datos inválidos.";
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, detalle);
     }
