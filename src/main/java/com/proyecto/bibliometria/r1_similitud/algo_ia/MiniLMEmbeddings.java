@@ -54,7 +54,20 @@ public final class MiniLMEmbeddings implements AutoCloseable {
             throw new IllegalArgumentException("El abstract debe contener al menos un token");
         }
 
-        float[] embedding = predictor.predict(String.join(" ", tokens));
+        return predecir(String.join(" ", tokens));
+    }
+
+    // El abstract original se entrega al tokenizador para conservar su contexto completo.
+    public double[] vectorizarTexto(String texto) throws TranslateException {
+        Objects.requireNonNull(texto, "El texto no puede ser nulo");
+        if (texto.isBlank()) {
+            throw new IllegalArgumentException("El abstract no puede estar vacío");
+        }
+        return predecir(texto);
+    }
+
+    private double[] predecir(String texto) throws TranslateException {
+        float[] embedding = predictor.predict(texto);
         if (embedding.length == 0) {
             throw new IllegalStateException("El modelo ONNX devolvió un embedding vacío");
         }

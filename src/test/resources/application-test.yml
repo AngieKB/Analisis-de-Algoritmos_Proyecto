@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:bibliometria-test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+app:
+  corpus:
+    directory: abstracts
+  minilm:
+    embedding-file: embeddings/minilm_abstracts.txt
+  glove:
+    embedding-file: embeddings/glove_corpus.txt

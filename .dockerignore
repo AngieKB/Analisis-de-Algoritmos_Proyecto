@@ -1,0 +1,11 @@
+.git
+.gradle
+.idea
+.vscode
+build
+Articulos
+crudos
+dendrogramas
+modelos
+src/test
+*.pdf
