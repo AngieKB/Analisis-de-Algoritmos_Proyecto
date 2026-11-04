@@ -19,7 +19,10 @@ import org.junit.jupiter.api.io.TempDir;
 
 import com.proyecto.bibliometria.r1_similitud.algo_ia.MiniLMEmbeddingsCache;
 
-// Se comprueba el cálculo de similitudes usando embeddings guardados, sin cargar MiniLM.
+// Estas pruebas usan vectores MiniLM que ya fueron generados y guardados en un archivo.
+// La caché carga cada ID, título y vector de 384 componentes en memoria.
+// Después calcula el coseno directamente entre los vectores, sin abrir el modelo ONNX
+// ni volver a procesar los abstracts. Así se prueba el uso de embeddings precalculados.
 class TestMiniLMEmbeddingsCache {
 
     @TempDir
@@ -31,17 +34,32 @@ class TestMiniLMEmbeddingsCache {
         assumeTrue(Files.isRegularFile(archivo), "Primero se deben generar los embeddings MiniLM");
 
         MiniLMEmbeddingsCache cache = new MiniLMEmbeddingsCache(archivo);
+        double mismoTema = cache.similitud(11, 16);
+        double distintoTema = cache.similitud(11, 7);
 
         assertEquals(20, cache.ids().size());
-        assertTrue(cache.similitud(11, 16) > cache.similitud(11, 7));
+        assertTrue(mismoTema > distintoTema);
+
+        System.out.println("MiniLM en caché - artículos cargados: " + cache.ids().size());
+        System.out.printf(Locale.ROOT,
+                "MiniLM en caché - Artículo 11 vs 16 (mismo tema): %.12f%n", mismoTema);
+        System.out.printf(Locale.ROOT,
+                "MiniLM en caché - Artículo 11 vs 7 (distinto tema): %.12f%n", distintoTema);
     }
 
     @Test
     void calculaSimilitudDeDosArticulosDesdeArchivo() throws Exception {
         MiniLMEmbeddingsCache cache = cargarCache();
+        double similitud = cache.similitud(11, 16);
 
-        assertEquals(0.8, cache.similitud(11, 16), 1e-8);
+        assertEquals(0.8, similitud, 1e-8);
         assertEquals("Artículo 11", cache.titulo(11));
+
+        System.out.println("Prueba con vectores controlados de 384 componentes:");
+        System.out.println("Artículo 11: vector unitario en la dimensión 0.");
+        System.out.println("Artículo 16: valores 0.8 en la dimensión 0 y 0.6 en la dimensión 1.");
+        System.out.println("Producto punto = 0.8; ambas normas = 1; coseno = 0.8.");
+        System.out.printf(Locale.ROOT, "Similitud calculada desde la caché: %.8f%n", similitud);
     }
 
     @Test
@@ -58,6 +76,10 @@ class TestMiniLMEmbeddingsCache {
         }
         assertEquals(0.8, matriz[0][1], 1e-8);
         assertEquals(0.0, matriz[0][2], 1e-8);
+
+        System.out.println("Matriz de similitudes MiniLM en caché, orden de IDs: [11, 16, 7]");
+        imprimirMatriz(matriz);
+        System.out.println("La diagonal vale 1 y los valores a ambos lados de la diagonal son iguales.");
     }
 
     @Test
@@ -65,6 +87,7 @@ class TestMiniLMEmbeddingsCache {
         MiniLMEmbeddingsCache cache = cargarCache();
 
         assertThrows(IllegalArgumentException.class, () -> cache.similitud(11, 99));
+        System.out.println("Validación correcta: la caché rechaza el artículo 99 porque no tiene embedding.");
     }
 
     @Test
@@ -75,14 +98,20 @@ class TestMiniLMEmbeddingsCache {
                 StandardCharsets.UTF_8);
 
         assertThrows(IOException.class, () -> new MiniLMEmbeddingsCache(archivo));
+        System.out.println("Validación correcta: se rechaza el archivo porque el vector no tiene 384 componentes.");
     }
 
+    // Esta caché temporal se crea con vectores sencillos para conocer de antemano
+    // el coseno esperado y comprobar el cálculo sin depender del modelo ni del corpus real.
     private MiniLMEmbeddingsCache cargarCache() throws IOException {
         Path archivo = carpetaTemporal.resolve("embeddings.txt");
         Files.writeString(archivo, contenidoValido(), StandardCharsets.UTF_8);
         return new MiniLMEmbeddingsCache(archivo);
     }
 
+    // Los tres vectores tienen 384 posiciones, igual que MiniLM.
+    // El artículo 11 apunta en la dimensión 0 y el 7 en la dimensión 1, por eso
+    // su coseno es 0. El artículo 16 forma un ángulo con coseno 0.8 respecto al 11.
     private static String contenidoValido() {
         double[] a = new double[384];
         a[0] = 1.0;
@@ -105,5 +134,11 @@ class TestMiniLMEmbeddingsCache {
                 .mapToObj(i -> String.format(Locale.ROOT, "%.8f", vector[i]))
                 .collect(Collectors.joining(","));
         return id + "\t" + titulo + "\t" + componentes;
+    }
+
+    private static void imprimirMatriz(double[][] matriz) {
+        for (double[] fila : matriz) {
+            System.out.println(java.util.Arrays.toString(fila));
+        }
     }
 }

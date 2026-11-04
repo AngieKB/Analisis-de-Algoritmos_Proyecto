@@ -14,15 +14,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-// Se carga un Transformer de embeddings local y se calcula la similitud coseno
-// entre los vectores que representa cada abstract.
+// Esta clase usa MiniLM para representar cada abstract como un vector numérico.
+// El vector resume el texto en un espacio de 384 dimensiones, donde cada posición
+// contiene una característica aprendida por el modelo y no una palabra específica.
+// Luego se compara la orientación de dos vectores mediante la similitud del coseno.
 public final class MiniLMEmbeddings implements AutoCloseable {
 
     private final ZooModel<String, float[]> modelo;
     private final Predictor<String, float[]> predictor;
 
     // El modelo y el tokenizador deben estar juntos en la carpeta indicada.
-    // Se configura mean pooling para modelos que entregan un vector por token.
+    // MiniLM primero obtiene representaciones para los tokens del texto.
+    // Con mean pooling, esas representaciones se promedian para formar un solo vector
+    // por abstract. La normalización deja los embeddings con longitud unitaria.
+    // Aunque los vectores ya vengan normalizados, el cálculo del coseno vuelve a
+    // considerar las normas para que la fórmula quede explícita y sea robusta.
     public MiniLMEmbeddings(Path carpetaModelo) throws IOException, ModelException {
         Objects.requireNonNull(carpetaModelo, "La ruta del modelo no puede ser nula");
 
@@ -47,7 +53,9 @@ public final class MiniLMEmbeddings implements AutoCloseable {
         this.predictor = modelo.newPredictor();
     }
 
-    // El texto se tokeniza y se convierte en un embedding mediante el modelo ONNX.
+    // Los tokens preparados por el proyecto se unen en un texto y el tokenizador
+    // del modelo los transforma a su propia representación de entrada.
+    // El modelo procesa esa secuencia y devuelve un único embedding del abstract.
     public double[] vectorizar(List<String> tokens) throws TranslateException {
         Objects.requireNonNull(tokens, "La lista de tokens no puede ser nula");
         if (tokens.isEmpty()) {
@@ -57,7 +65,8 @@ public final class MiniLMEmbeddings implements AutoCloseable {
         return predecir(String.join(" ", tokens));
     }
 
-    // El abstract original se entrega al tokenizador para conservar su contexto completo.
+    // Se entrega el abstract completo para que el tokenizador de MiniLM genere
+    // sus tokens y el modelo aproveche el contexto de la frase.
     public double[] vectorizarTexto(String texto) throws TranslateException {
         Objects.requireNonNull(texto, "El texto no puede ser nulo");
         if (texto.isBlank()) {
@@ -72,6 +81,9 @@ public final class MiniLMEmbeddings implements AutoCloseable {
             throw new IllegalStateException("El modelo ONNX devolvió un embedding vacío");
         }
 
+        // El resultado del modelo llega como un arreglo de valores float.
+        // Se copia a double para realizar las operaciones de similitud con mayor
+        // precisión en los acumuladores del producto punto y las normas.
         double[] vector = new double[embedding.length];
         for (int i = 0; i < embedding.length; i++) {
             if (!Float.isFinite(embedding[i])) {
@@ -82,13 +94,19 @@ public final class MiniLMEmbeddings implements AutoCloseable {
         return vector;
     }
 
-    // Se calcula el coseno entre los embeddings de los dos abstracts.
+    // Se vectoriza cada abstract y se calcula el coseno entre sus embeddings.
+    // La similitud mide qué tan alineadas están sus direcciones en el espacio
+    // vectorial; no representa directamente un porcentaje de contenido compartido.
     public double similitud(List<String> a, List<String> b) throws TranslateException {
         return coseno(vectorizar(a), vectorizar(b));
     }
 
-    // Se calcula una matriz simétrica para comparar dos o más abstracts seleccionados.
-    // Cada embedding se calcula una sola vez y se reutiliza para todos los pares.
+    // Para n abstracts se construye una matriz cuadrada de n filas por n columnas.
+    // La posición matriz[i][j] guarda la similitud entre el abstract i y el j.
+    // La diagonal vale 1 porque cada abstract tiene similitud coseno 1 consigo mismo.
+    // La matriz es simétrica: comparar i con j da lo mismo que comparar j con i.
+    // Cada embedding se calcula una sola vez y se reutiliza para todos los pares,
+    // evitando volver a ejecutar MiniLM durante el llenado de la matriz.
     public double[][] matrizSimilitudes(List<List<String>> abstracts) throws TranslateException {
         Objects.requireNonNull(abstracts, "La lista de abstracts no puede ser nula");
         if (abstracts.size() < 2) {
@@ -100,6 +118,9 @@ public final class MiniLMEmbeddings implements AutoCloseable {
             vectores.add(vectorizar(tokens));
         }
 
+        // La matriz contiene n² posiciones. Solo se calcula una vez cada par
+        // distinto de abstracts y se copia el resultado a las dos posiciones
+        // correspondientes, por la simetría del coseno.
         double[][] matriz = new double[abstracts.size()][abstracts.size()];
         for (int i = 0; i < vectores.size(); i++) {
             matriz[i][i] = 1.0;
@@ -117,6 +138,12 @@ public final class MiniLMEmbeddings implements AutoCloseable {
             throw new IllegalArgumentException("Los vectores deben tener la misma dimensión");
         }
 
+        // Si cada embedding tiene d dimensiones, ambos arreglos se pueden ver
+        // como vectores fila de tamaño 1 por d. En una matriz de embeddings,
+        // cada fila sería un abstract y cada columna una dimensión del modelo.
+        // Se acumulan tres cantidades recorriendo las d dimensiones:
+        // producto punto = suma de a[i] * b[i].
+        // normaA² = suma de a[i]² y normaB² = suma de b[i]².
         double productoPunto = 0.0;
         double normaA = 0.0;
         double normaB = 0.0;
@@ -127,10 +154,18 @@ public final class MiniLMEmbeddings implements AutoCloseable {
             normaB += b[i] * b[i];
         }
 
+        // La fórmula del coseno divide por el producto de las longitudes.
+        // Si alguno de los vectores es cero, esa división no está definida;
+        // en ese caso se devuelve 0 para indicar que no hay dirección comparable.
         if (normaA == 0.0 || normaB == 0.0) {
             return 0.0;
         }
 
+        // cos(a,b) = (a · b) / (||a|| * ||b||).
+        // La raíz convierte las normas al cuadrado acumuladas en longitudes.
+        // El resultado matemático está entre -1 y 1: cerca de 1 indica direcciones
+        // parecidas, cerca de 0 direcciones poco alineadas y cerca de -1 direcciones
+        // opuestas. El límite final evita pequeñas salidas del rango por redondeo.
         double resultado = productoPunto / (Math.sqrt(normaA) * Math.sqrt(normaB));
         return Math.max(-1.0, Math.min(1.0, resultado));
     }
